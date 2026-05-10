@@ -14,7 +14,7 @@ export async function fetchDashboardStats(): Promise<DashboardStats> {
   const [usersSnap, membersSnap, txSnap, wdSnap] = await Promise.all([
     getDocs(collection(db, 'users')),
     getDocs(collection(db, 'group_members')),
-    getDocs(query(collection(db, 'transactions'), where('source', '==', 'payment'))),
+    getDocs(query(collection(db, 'payments'), where('status', '==', 'verified'))),
     getDocs(collection(db, 'withdraw_requests')),
   ])
 
@@ -36,7 +36,7 @@ export async function fetchDashboardStats(): Promise<DashboardStats> {
       .map((d) => d.data().userId)
   )
 
-  const totalRevenue = txSnap.docs.reduce((sum, d) => sum + (d.data().amount ?? 0), 0)
+  const totalRevenue = txSnap.docs.reduce((sum, d) => sum + (d.data().amountUsd ?? 0), 0)
 
   const withdrawals = wdSnap.docs.map((d) => d.data())
   const totalWithdrawals = withdrawals.filter((d) => d.status === 'paid').reduce((s, d) => s + d.amount, 0)
@@ -85,8 +85,8 @@ export async function fetchUserGrowthData(days = 30): Promise<ChartDataPoint[]> 
 export async function fetchRevenueData(days = 30): Promise<ChartDataPoint[]> {
   const snap = await getDocs(
     query(
-      collection(db, 'transactions'),
-      where('source', '==', 'payment'),
+      collection(db, 'payments'),
+      where('status', '==', 'verified'),
       orderBy('createdAt', 'asc'),
       limit(500)
     )
@@ -103,7 +103,7 @@ export async function fetchRevenueData(days = 30): Promise<ChartDataPoint[]> {
     if (!ts?.toDate) return
     const dateKey = format(ts.toDate(), 'MMM dd')
     if (counts[dateKey] !== undefined) {
-      counts[dateKey] += d.data().amount ?? 0
+      counts[dateKey] += d.data().amountUsd ?? 0
     }
   })
 

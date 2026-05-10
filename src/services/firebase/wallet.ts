@@ -3,6 +3,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  setDoc,
   updateDoc,
   addDoc,
   query,
@@ -16,7 +17,15 @@ import {
   type Unsubscribe,
 } from 'firebase/firestore'
 import { db } from './config'
-import type { Transaction, WithdrawRequest, DistributionSettings, Wallet } from '../../types'
+import type {
+  Transaction,
+  WithdrawRequest,
+  DistributionSettings,
+  Wallet,
+  Payment,
+  CompanyWallet,
+  CompanyTransaction,
+} from '../../types'
 
 // ─── Wallets ──────────────────────────────────────────────────────────────────
 
@@ -129,10 +138,55 @@ export async function fetchDistributionSettings(): Promise<DistributionSettings>
 }
 
 export async function saveDistributionSettings(settings: DistributionSettings): Promise<void> {
-  await updateDoc(doc(db, 'distribution_settings', 'main'), {
+  await setDoc(doc(db, 'distribution_settings', 'main'), {
     ...settings,
     updatedAt: serverTimestamp(),
+  }, { merge: true })
+}
+
+// ─── Payments Collection ──────────────────────────────────────────────────────
+
+export async function fetchAllPayments(limitCount = 200): Promise<Payment[]> {
+  const snap = await getDocs(
+    query(collection(db, 'payments'), orderBy('createdAt', 'desc'), limit(limitCount))
+  )
+  return snap.docs.map((d) => ({ id: d.id, ...d.data() } as Payment))
+}
+
+export function subscribeToPayments(
+  callback: (payments: Payment[]) => void
+): Unsubscribe {
+  const q = query(collection(db, 'payments'), orderBy('createdAt', 'desc'), limit(200))
+  return onSnapshot(q, (snap) => {
+    callback(snap.docs.map((d) => ({ id: d.id, ...d.data() } as Payment)))
   })
+}
+
+// ─── Company Wallet ───────────────────────────────────────────────────────────
+
+export async function fetchCompanyWallet(): Promise<CompanyWallet | null> {
+  const snap = await getDoc(doc(db, 'company_wallet', 'summary'))
+  if (!snap.exists()) return null
+  return snap.data() as CompanyWallet
+}
+
+export function subscribeToCompanyWallet(
+  callback: (wallet: CompanyWallet | null) => void
+): Unsubscribe {
+  return onSnapshot(doc(db, 'company_wallet', 'summary'), (snap) => {
+    callback(snap.exists() ? (snap.data() as CompanyWallet) : null)
+  })
+}
+
+export async function fetchCompanyTransactions(
+  limitCount = 100
+): Promise<CompanyTransaction[]> {
+  const snap = await getDocs(
+    query(collection(db, 'company_transactions'), orderBy('createdAt', 'desc'), limit(limitCount))
+  )
+  return snap.docs.map(
+    (d) => ({ id: d.id, ...d.data() } as CompanyTransaction)
+  )
 }
 
 // ─── Revenue Summary ──────────────────────────────────────────────────────────
@@ -143,11 +197,11 @@ export async function fetchRevenueSummary(): Promise<{
   pendingWithdrawals: number
 }> {
   const [txSnap, wdSnap] = await Promise.all([
-    getDocs(query(collection(db, 'transactions'), where('type', '==', 'credit'), where('source', '==', 'payment'))),
+    getDocs(query(collection(db, 'payments'), where('status', '==', 'verified'))),
     getDocs(collection(db, 'withdraw_requests')),
   ])
 
-  const totalRevenue = txSnap.docs.reduce((sum, d) => sum + (d.data().amount ?? 0), 0)
+  const totalRevenue = txSnap.docs.reduce((sum, d) => sum + (d.data().amountUsd ?? 0), 0)
   const withdrawals = wdSnap.docs.map((d) => d.data())
   const totalWithdrawn = withdrawals.filter((d) => d.status === 'paid').reduce((s, d) => s + d.amount, 0)
   const pendingWithdrawals = withdrawals.filter((d) => d.status === 'pending').reduce((s, d) => s + d.amount, 0)

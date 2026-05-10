@@ -101,7 +101,6 @@ export interface Wallet {
 
 export type TransactionType = 'credit' | 'debit'
 export type TransactionSource =
-  | 'payment'
   | 'journey_distribution'
   | 'crest_distribution'
   | 'withdrawal'
@@ -114,6 +113,9 @@ export interface Transaction {
   type: TransactionType
   source: TransactionSource
   description: string
+  payerUserId?: string
+  payerFullName?: string
+  payerCrestName?: string
   createdAt: unknown
 }
 
@@ -141,6 +143,47 @@ export interface DistributionSettings {
   crest_single_fee?: number
   crest_spouse_fee?: number
   crest_member_percent?: number
+}
+
+// ─── Payments ─────────────────────────────────────────────────────────────────
+
+export type PaymentType = 'journey' | 'crest'
+export type CrestType = 'single' | 'spouse'
+
+export interface Payment {
+  id: string
+  userId: string
+  reference: string
+  paymentType: PaymentType
+  crestType?: CrestType
+  amountUsd: number
+  currency: string
+  status: 'pending' | 'verified' | 'failed'
+  paystackStatus: string
+  processed: boolean
+  createdAt: unknown
+  verifiedAt?: unknown
+  distributedAt?: unknown
+}
+
+// ─── Company Wallet ───────────────────────────────────────────────────────────
+
+export interface CompanyWallet {
+  balance: number
+  total_earned: number
+  total_journey_earned: number
+  total_crest_earned: number
+  updatedAt: unknown
+}
+
+export interface CompanyTransaction {
+  id: string
+  amount: number
+  source: 'journey_payment' | 'crest_payment'
+  paymentRef: string
+  userId: string
+  crestType?: string
+  createdAt: unknown
 }
 
 // ─── Crests & System ──────────────────────────────────────────────────────────

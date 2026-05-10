@@ -10,7 +10,6 @@ import { formatCurrency, formatDateTime } from '../../utils/formatters'
 import { useState, useMemo } from 'react'
 
 const SOURCE_LABELS: Record<string, string> = {
-  payment: 'Payment',
   journey_distribution: 'Journey Dist.',
   crest_distribution: 'Crest Dist.',
   withdrawal: 'Withdrawal',
@@ -92,7 +91,6 @@ export default function WalletPage() {
 
   const sourceOptions = [
     { value: '', label: 'All Sources' },
-    { value: 'payment', label: 'Payment' },
     { value: 'journey_distribution', label: 'Journey Distribution' },
     { value: 'crest_distribution', label: 'Crest Distribution' },
     { value: 'withdrawal', label: 'Withdrawal' },

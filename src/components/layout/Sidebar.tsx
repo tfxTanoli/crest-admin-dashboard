@@ -13,7 +13,9 @@ import {
   CreditCard,
   GraduationCap,
   ShieldAlert,
+  Building2,
   ChevronRight,
+  FileText,
   X,
 } from 'lucide-react'
 
@@ -26,7 +28,7 @@ const navSections = [
   {
     label: 'Overview',
     items: [
-      { to: '/', icon: LayoutDashboard, label: 'Dashboard' },
+      { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
       { to: '/analytics', icon: BarChart2, label: 'Analytics' },
     ],
   },
@@ -51,6 +53,7 @@ const navSections = [
       { to: '/payments', icon: CreditCard, label: 'Payments' },
       { to: '/wallet', icon: Wallet, label: 'Transactions' },
       { to: '/withdrawals', icon: ArrowDownToLine, label: 'Withdrawals' },
+      { to: '/company-wallet', icon: Building2, label: 'Company Wallet' },
       { to: '/distribution', icon: Sliders, label: 'Distribution' },
     ],
   },
@@ -59,6 +62,7 @@ const navSections = [
     items: [
       { to: '/crests', icon: Shield, label: 'Crests' },
       { to: '/system', icon: Settings, label: 'System Config' },
+      { to: '/legal', icon: FileText, label: 'Legal Documents' },
     ],
   },
 ]
@@ -106,7 +110,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
                   <NavLink
                     key={to}
                     to={to}
-                    end={to === '/'}
+                    end={to === '/dashboard'}
                     onClick={onClose}
                     className={({ isActive }) =>
                       `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors group

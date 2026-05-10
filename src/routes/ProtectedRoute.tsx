@@ -16,7 +16,7 @@ export default function ProtectedRoute() {
   }
 
   if (!admin) {
-    return <Navigate to="/login" replace />
+    return <Navigate to="/" replace />
   }
 
   return <Outlet />

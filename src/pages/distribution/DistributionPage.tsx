@@ -40,6 +40,14 @@ export default function DistributionPage() {
   }
 
   const journeyTotal = (form.journey_percent ?? 0) + (form.crest_percent ?? 0) + (form.company_percent ?? 0)
+  const totalValid = journeyTotal === 100
+  const crestCompany = 100 - (form.crest_member_percent ?? 0)
+
+  // Live preview helpers
+  const fee = form.journey_fee_usd ?? 100
+  const journeyPool = (fee * (form.journey_percent ?? 0)) / 100
+  const crestPool   = (fee * (form.crest_percent ?? 0)) / 100
+  const companyShare = (fee * (form.company_percent ?? 0)) / 100
 
   if (isLoading) return <PageSpinner />
 
@@ -53,9 +61,13 @@ export default function DistributionPage() {
       {/* Journey Distribution */}
       <Card title="Journey Payment Distribution">
         <div className="space-y-4">
-          <div className={`flex items-center gap-2 p-3 rounded-lg text-sm ${journeyTotal === 100 ? 'bg-green-900/20 text-green-400' : 'bg-yellow-900/20 text-yellow-400'}`}>
+          <div className={`flex items-center gap-2 p-3 rounded-lg text-sm ${totalValid ? 'bg-green-900/20 text-green-400' : 'bg-red-900/20 text-red-400'}`}>
             <Info className="w-4 h-4 flex-shrink-0" />
-            <span>Total must equal 100%. Current: {journeyTotal}%</span>
+            <span>
+              {totalValid
+                ? '✓ Percentages are valid (total = 100%)'
+                : `Total must equal 100%. Current: ${journeyTotal}% — adjust to proceed.`}
+            </span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -148,11 +160,33 @@ export default function DistributionPage() {
         </div>
       </Card>
 
+      {/* Live preview */}
+      <Card title="Live Preview — Journey Payment Breakdown">
+        <p className="text-gray-400 text-xs mb-4">
+          Based on a ${fee.toFixed(2)} journey fee with current percentages.
+        </p>
+        <div className="space-y-2 text-sm">
+          <div className="flex justify-between py-2 border-b border-gray-700">
+            <span className="text-gray-300">Journey members pool ({form.journey_percent ?? 0}%)</span>
+            <span className="text-green-400 font-mono font-semibold">${journeyPool.toFixed(2)}</span>
+          </div>
+          <div className="flex justify-between py-2 border-b border-gray-700">
+            <span className="text-gray-300">Crest members pool ({form.crest_percent ?? 0}%)</span>
+            <span className="text-green-400 font-mono font-semibold">${crestPool.toFixed(2)}</span>
+          </div>
+          <div className="flex justify-between py-2">
+            <span className="text-gray-300">Company ({form.company_percent ?? 0}%)</span>
+            <span className="text-blue-400 font-mono font-semibold">${companyShare.toFixed(2)}</span>
+          </div>
+        </div>
+      </Card>
+
       <div className="flex justify-end">
         <Button
           icon={<Save className="w-4 h-4" />}
           loading={saveMutation.isPending}
           onClick={() => saveMutation.mutate(form)}
+          disabled={!totalValid}
           size="lg"
         >
           Save Settings

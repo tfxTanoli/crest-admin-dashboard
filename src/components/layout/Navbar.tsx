@@ -1,4 +1,6 @@
-import { Menu, Bell, LogOut, User } from 'lucide-react'
+import { useState } from 'react'
+import { Menu, Bell, LogOut, User, RefreshCw } from 'lucide-react'
+import { useQueryClient } from '@tanstack/react-query'
 import { useAuthStore } from '../../store/authStore'
 import { adminLogout } from '../../services/firebase/auth'
 import toast from 'react-hot-toast'
@@ -9,6 +11,16 @@ interface NavbarProps {
 
 export default function Navbar({ onMenuToggle }: NavbarProps) {
   const { admin, logout } = useAuthStore()
+  const queryClient = useQueryClient()
+  const [refreshing, setRefreshing] = useState(false)
+
+  async function handleRefresh() {
+    setRefreshing(true)
+    await queryClient.invalidateQueries()
+    await queryClient.refetchQueries({ type: 'active' })
+    setRefreshing(false)
+    toast.success('Page data refreshed')
+  }
 
   async function handleLogout() {
     try {
@@ -32,6 +44,15 @@ export default function Navbar({ onMenuToggle }: NavbarProps) {
       <div className="flex-1 lg:flex-none" />
 
       <div className="flex items-center gap-2">
+        <button
+          onClick={handleRefresh}
+          disabled={refreshing}
+          title="Refresh page data"
+          className="p-2 text-gray-400 hover:text-white rounded-lg hover:bg-gray-800 disabled:opacity-50"
+        >
+          <RefreshCw className={`w-5 h-5 ${refreshing ? 'animate-spin' : ''}`} />
+        </button>
+
         <button className="p-2 text-gray-400 hover:text-white rounded-lg hover:bg-gray-800 relative">
           <Bell className="w-5 h-5" />
         </button>
