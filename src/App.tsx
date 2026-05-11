@@ -7,6 +7,8 @@ import ProtectedRoute from './routes/ProtectedRoute'
 import AdminLayout from './layouts/AdminLayout'
 import LandingPage from './pages/landing/LandingPage'
 import PublicLegalPage from './pages/public/PublicLegalPage'
+import ContactPage from './pages/public/ContactPage'
+import AccountDeletionPage from './pages/public/AccountDeletionPage'
 import LoginPage from './pages/auth/LoginPage'
 import DashboardPage from './pages/dashboard/DashboardPage'
 import UsersPage from './pages/users/UsersPage'
@@ -60,6 +62,8 @@ export default function App() {
       <Route path="/privacy-policy" element={<PublicLegalPage type="privacy_policy" />} />
       <Route path="/terms" element={<PublicLegalPage type="terms_conditions" />} />
       <Route path="/csae" element={<PublicLegalPage type="csae_policy" />} />
+      <Route path="/contact" element={<ContactPage />} />
+      <Route path="/delete-account" element={<AccountDeletionPage />} />
 
       {/* Protected admin routes */}
       <Route element={<ProtectedRoute />}>

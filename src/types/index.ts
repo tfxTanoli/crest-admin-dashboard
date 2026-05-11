@@ -1,4 +1,4 @@
-// ─── Admin ────────────────────────────────────────────────────────────────────
+// Admin
 
 export interface AdminUser {
   uid: string
@@ -7,7 +7,7 @@ export interface AdminUser {
   createdAt?: unknown
 }
 
-// ─── User / Auth ──────────────────────────────────────────────────────────────
+// User / Auth
 
 export interface UserProfile {
   uid: string
@@ -27,7 +27,7 @@ export interface UserProfile {
   updated_at: string
 }
 
-// ─── Community ────────────────────────────────────────────────────────────────
+// Community
 
 export type GroupType = 'orientation' | 'journey' | 'crest'
 
@@ -91,7 +91,7 @@ export interface PrivateMessage {
   isDeleted: boolean
 }
 
-// ─── Wallet ───────────────────────────────────────────────────────────────────
+// Wallet
 
 export interface Wallet {
   userId: string
@@ -145,7 +145,7 @@ export interface DistributionSettings {
   crest_member_percent?: number
 }
 
-// ─── Payments ─────────────────────────────────────────────────────────────────
+// Payments
 
 export type PaymentType = 'journey' | 'crest'
 export type CrestType = 'single' | 'spouse'
@@ -166,7 +166,7 @@ export interface Payment {
   distributedAt?: unknown
 }
 
-// ─── Company Wallet ───────────────────────────────────────────────────────────
+// Company Wallet
 
 export interface CompanyWallet {
   balance: number
@@ -186,7 +186,7 @@ export interface CompanyTransaction {
   createdAt: unknown
 }
 
-// ─── Crests & System ──────────────────────────────────────────────────────────
+// Crests & System
 
 export interface CrestConfig {
   id: string
@@ -204,7 +204,7 @@ export interface SystemConfig {
   updatedAt?: unknown
 }
 
-// ─── Dashboard Stats ──────────────────────────────────────────────────────────
+// Dashboard Stats
 
 export interface DashboardStats {
   totalUsers: number
@@ -218,7 +218,7 @@ export interface DashboardStats {
   blockedUsers: number
 }
 
-// ─── Analytics ────────────────────────────────────────────────────────────────
+// Analytics
 
 export interface ChartDataPoint {
   date: string

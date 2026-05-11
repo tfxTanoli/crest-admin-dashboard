@@ -15,7 +15,7 @@ import {
 import { db } from './config'
 import type { ChatMessage, GroupMember, GroupType, ChatInvitation, PrivateChat, PrivateMessage } from '../../types'
 
-// ─── Group Members ────────────────────────────────────────────────────────────
+// Group Members
 
 export async function fetchGroupMembers(groupId: GroupType): Promise<GroupMember[]> {
   const q = query(collection(db, 'group_members'), where('groupId', '==', groupId))
@@ -36,7 +36,7 @@ export async function fetchAllGroupMemberCounts(): Promise<Record<GroupType, num
   }
 }
 
-// ─── Group Messages ────────────────────────────────────────────────────────────
+// Group Messages
 
 export function subscribeToGroupMessages(
   groupId: string,
@@ -70,7 +70,7 @@ export async function sendAdminAnnouncement(groupId: string, text: string): Prom
   })
 }
 
-// ─── Private Chats ────────────────────────────────────────────────────────────
+// Private Chats
 
 export async function fetchAllPrivateChats(): Promise<PrivateChat[]> {
   const snap = await getDocs(query(collection(db, 'private_chats'), orderBy('createdAt', 'desc')))
@@ -92,7 +92,7 @@ export async function deletePrivateMessage(messageId: string): Promise<void> {
   await updateDoc(doc(db, 'private_messages', messageId), { isDeleted: true })
 }
 
-// ─── Chat Invitations ─────────────────────────────────────────────────────────
+// Chat Invitations
 
 export async function fetchChatInvitations(): Promise<ChatInvitation[]> {
   const snap = await getDocs(query(collection(db, 'chat_invitations'), orderBy('createdAt', 'desc')))

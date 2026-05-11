@@ -11,7 +11,7 @@ import {
 } from 'firebase/firestore'
 import { db } from './config'
 
-// ─── Stage Update ─────────────────────────────────────────────────────────────
+// Stage Update
 
 export async function forceSetUserStage(userId: string, stage: number): Promise<void> {
   await updateDoc(doc(db, 'users', userId), {
@@ -37,7 +37,7 @@ export async function resetUserProgression(userId: string): Promise<void> {
   await batch.commit()
 }
 
-// ─── Certificate Unlock ───────────────────────────────────────────────────────
+// Certificate Unlock
 
 export async function unlockUserCertificate(userId: string): Promise<void> {
   await updateDoc(doc(db, 'users', userId), {
@@ -46,7 +46,7 @@ export async function unlockUserCertificate(userId: string): Promise<void> {
   })
 }
 
-// ─── Force Week Unlock ────────────────────────────────────────────────────────
+// Force Week Unlock
 // Advances user to the given stage without going through the normal flow
 
 export async function forceUnlockWeek(userId: string, targetStage: number): Promise<void> {
@@ -56,7 +56,7 @@ export async function forceUnlockWeek(userId: string, targetStage: number): Prom
   })
 }
 
-// ─── Bulk Stage Reset ─────────────────────────────────────────────────────────
+// Bulk Stage Reset
 
 export async function bulkResetStage(userIds: string[], targetStage: number): Promise<void> {
   const BATCH_LIMIT = 400

@@ -27,7 +27,7 @@ import type {
   CompanyTransaction,
 } from '../../types'
 
-// ─── Wallets ──────────────────────────────────────────────────────────────────
+// Wallets
 
 export async function fetchAllWallets(): Promise<Wallet[]> {
   const snap = await getDocs(collection(db, 'wallets'))
@@ -40,7 +40,7 @@ export async function fetchWalletByUser(userId: string): Promise<Wallet | null> 
   return snap.data() as Wallet
 }
 
-// ─── Transactions ─────────────────────────────────────────────────────────────
+// Transactions
 
 export async function fetchAllTransactions(limitCount = 100): Promise<Transaction[]> {
   const snap = await getDocs(
@@ -63,7 +63,7 @@ export function subscribeToTransactions(callback: (txs: Transaction[]) => void):
   })
 }
 
-// ─── Withdraw Requests ────────────────────────────────────────────────────────
+// Withdraw Requests
 
 export async function fetchAllWithdrawRequests(): Promise<WithdrawRequest[]> {
   const snap = await getDocs(
@@ -121,7 +121,7 @@ export async function markWithdrawalPaid(requestId: string): Promise<void> {
   })
 }
 
-// ─── Distribution Settings ────────────────────────────────────────────────────
+// Distribution Settings
 
 export async function fetchDistributionSettings(): Promise<DistributionSettings> {
   const snap = await getDoc(doc(db, 'distribution_settings', 'main'))
@@ -144,7 +144,7 @@ export async function saveDistributionSettings(settings: DistributionSettings): 
   }, { merge: true })
 }
 
-// ─── Payments Collection ──────────────────────────────────────────────────────
+// Payments Collection
 
 export async function fetchAllPayments(limitCount = 200): Promise<Payment[]> {
   const snap = await getDocs(
@@ -162,7 +162,7 @@ export function subscribeToPayments(
   })
 }
 
-// ─── Company Wallet ───────────────────────────────────────────────────────────
+// Company Wallet
 
 export async function fetchCompanyWallet(): Promise<CompanyWallet | null> {
   const snap = await getDoc(doc(db, 'company_wallet', 'summary'))
@@ -189,7 +189,7 @@ export async function fetchCompanyTransactions(
   )
 }
 
-// ─── Revenue Summary ──────────────────────────────────────────────────────────
+// Revenue Summary
 
 export async function fetchRevenueSummary(): Promise<{
   totalRevenue: number

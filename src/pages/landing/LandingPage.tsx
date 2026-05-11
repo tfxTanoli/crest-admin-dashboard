@@ -198,8 +198,16 @@ export default function LandingPage() {
               Child Safety Standards
             </Link>
             <span className="text-gray-700">|</span>
-            <a href="tel:+2349025767556" className="hover:text-gray-300 transition-colors">
-              +234 902 576 7556
+            <Link to="/contact" className="hover:text-gray-300 transition-colors">
+              Support
+            </Link>
+            <span className="text-gray-700">|</span>
+            <Link to="/delete-account" className="hover:text-gray-300 transition-colors">
+              Account Deletion
+            </Link>
+            <span className="text-gray-700">|</span>
+            <a href="mailto:crestapp@crest.city" className="hover:text-gray-300 transition-colors">
+              crestapp@crest.city
             </a>
           </div>
         </div>

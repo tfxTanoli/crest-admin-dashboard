@@ -1,5 +1,6 @@
+import { Fragment, ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Shield, ArrowLeft, FileText, BookOpen, ShieldAlert } from 'lucide-react'
+import { Shield, ArrowLeft, FileText, BookOpen, ShieldAlert, Mail, Phone } from 'lucide-react'
 
 type LegalDocType = 'privacy_policy' | 'terms_conditions' | 'csae_policy'
 
@@ -8,11 +9,37 @@ interface Props {
 }
 
 const LAST_UPDATED = 'May 10, 2026'
-const SUPPORT_EMAIL = 'support@crestapp.com'
+const SUPPORT_EMAIL = 'crestapp@crest.city'
 const PHONE = '+2349025767556'
 const WEBSITE = 'www.crestapp.com'
 
-// ─── Section types ────────────────────────────────────────────────────────────
+// Text renderer: converts embedded emails to mailto links
+
+function renderText(text: string): ReactNode {
+  const parts = text.split(/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/)
+  if (parts.length === 1) return text
+  return (
+    <>
+      {parts.map((part, i) => {
+        const isEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(part)
+        if (isEmail) {
+          return (
+            <a
+              key={i}
+              href={`mailto:${part}`}
+              className="text-brand-400 font-semibold hover:text-brand-300 transition-colors underline underline-offset-2"
+            >
+              {part}
+            </a>
+          )
+        }
+        return <Fragment key={i}>{part}</Fragment>
+      })}
+    </>
+  )
+}
+
+// Section types
 
 interface BulletGroup {
   intro?: string
@@ -34,7 +61,7 @@ interface Section {
   trailingParagraphs?: string[]
 }
 
-// ─── Privacy Policy ───────────────────────────────────────────────────────────
+// Privacy Policy
 
 const PRIVACY_SECTIONS: Section[] = [
   {
@@ -161,7 +188,7 @@ const PRIVACY_SECTIONS: Section[] = [
   },
 ]
 
-// ─── Terms & Conditions ───────────────────────────────────────────────────────
+// Terms & Conditions
 
 const TERMS_SECTIONS: Section[] = [
   {
@@ -319,7 +346,7 @@ const TERMS_SECTIONS: Section[] = [
   },
 ]
 
-// ─── CSAE Policy ─────────────────────────────────────────────────────────────
+// CSAE Policy
 
 const CSAE_SECTIONS: Section[] = [
   {
@@ -424,7 +451,7 @@ const CSAE_SECTIONS: Section[] = [
   },
 ]
 
-// ─── Document map ─────────────────────────────────────────────────────────────
+// Document map
 
 const DOCS: Record<
   LegalDocType,
@@ -453,7 +480,7 @@ const DOCS: Record<
   },
 }
 
-// ─── Section renderer ─────────────────────────────────────────────────────────
+// Section renderer
 
 function BulletList({ bullets }: { bullets: string[] }) {
   return (
@@ -461,20 +488,57 @@ function BulletList({ bullets }: { bullets: string[] }) {
       {bullets.map((b, i) => (
         <li key={i} className="flex gap-2 text-sm text-gray-400">
           <span className="text-brand-400 mt-0.5 flex-shrink-0">•</span>
-          {b}
+          <span>{renderText(b)}</span>
         </li>
       ))}
     </ul>
   )
 }
 
+function ContactCard() {
+  return (
+    <div className="mt-4 bg-gray-800/50 border border-gray-700 rounded-xl p-4 space-y-3">
+      <a
+        href={`mailto:${SUPPORT_EMAIL}`}
+        className="flex items-center gap-3 group"
+      >
+        <div className="w-9 h-9 bg-brand-900/60 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-brand-800/60 transition-colors">
+          <Mail className="w-4 h-4 text-brand-400" />
+        </div>
+        <div>
+          <p className="text-xs text-gray-500 uppercase tracking-wide font-medium mb-0.5">Email Support</p>
+          <span className="text-brand-400 font-semibold group-hover:text-brand-300 transition-colors text-sm underline underline-offset-2">
+            {SUPPORT_EMAIL}
+          </span>
+        </div>
+      </a>
+      <a
+        href={`tel:${PHONE}`}
+        className="flex items-center gap-3 group"
+      >
+        <div className="w-9 h-9 bg-brand-900/60 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-brand-800/60 transition-colors">
+          <Phone className="w-4 h-4 text-brand-400" />
+        </div>
+        <div>
+          <p className="text-xs text-gray-500 uppercase tracking-wide font-medium mb-0.5">Phone</p>
+          <span className="text-brand-400 font-semibold group-hover:text-brand-300 transition-colors text-sm">
+            {PHONE}
+          </span>
+        </div>
+      </a>
+    </div>
+  )
+}
+
 function DocSection({ section }: { section: Section }) {
+  const isContactSection = section.heading.toLowerCase().includes('contact')
+
   return (
     <div className="space-y-3">
       <h2 className="text-base font-semibold text-white">{section.heading}</h2>
 
       {section.paragraphs?.map((p, i) => (
-        <p key={i} className="text-sm text-gray-400 leading-relaxed">{p}</p>
+        <p key={i} className="text-sm text-gray-400 leading-relaxed">{renderText(p)}</p>
       ))}
 
       {section.subsections && (
@@ -495,7 +559,7 @@ function DocSection({ section }: { section: Section }) {
           {section.bulletGroups.map((group, i) => (
             <div key={i} className="space-y-1.5">
               {group.intro && (
-                <p className="text-sm text-gray-400 leading-relaxed">{group.intro}</p>
+                <p className="text-sm text-gray-400 leading-relaxed">{renderText(group.intro)}</p>
               )}
               <BulletList bullets={group.bullets} />
             </div>
@@ -508,20 +572,22 @@ function DocSection({ section }: { section: Section }) {
           {section.numbered.map((item, i) => (
             <li key={i} className="flex gap-2 text-sm text-gray-400">
               <span className="text-brand-400 font-medium flex-shrink-0 w-4">{i + 1}.</span>
-              {item}
+              {renderText(item)}
             </li>
           ))}
         </ol>
       )}
 
       {section.trailingParagraphs?.map((p, i) => (
-        <p key={i} className="text-sm text-gray-400 leading-relaxed">{p}</p>
+        <p key={i} className="text-sm text-gray-400 leading-relaxed">{renderText(p)}</p>
       ))}
+
+      {isContactSection && <ContactCard />}
     </div>
   )
 }
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
+// Page
 
 export default function PublicLegalPage({ type }: Props) {
   const navigate = useNavigate()
@@ -573,7 +639,7 @@ export default function PublicLegalPage({ type }: Props) {
       <footer className="border-t border-gray-800 mt-12">
         <div className="max-w-4xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-600">
           <span>© {new Date().getFullYear()} CrestApp. All rights reserved.</span>
-          <a href={`tel:${PHONE}`} className="hover:text-gray-400 transition-colors">{PHONE}</a>
+          <a href={`mailto:${SUPPORT_EMAIL}`} className="hover:text-gray-400 transition-colors">{SUPPORT_EMAIL}</a>
         </div>
       </footer>
     </div>
