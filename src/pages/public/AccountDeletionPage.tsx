@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { Shield, ArrowLeft, Trash2, AlertTriangle, CheckCircle2, Mail, Smartphone, Info } from 'lucide-react'
 
-const SUPPORT_EMAIL = 'crestapp@crest.city'
+const SUPPORT_EMAIL = 'support@crest.city'
 
 export default function AccountDeletionPage() {
   const navigate = useNavigate()

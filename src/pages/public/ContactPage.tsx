@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { Shield, ArrowLeft, Mail, Phone, Globe, MessageCircle } from 'lucide-react'
 
-const SUPPORT_EMAIL = 'crestapp@crest.city'
+const SUPPORT_EMAIL = 'support@crest.city'
 const PHONE = '+2349025767556'
 const WEBSITE = 'www.crestapp.com'
 
