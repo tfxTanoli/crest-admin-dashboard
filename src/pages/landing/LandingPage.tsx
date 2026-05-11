@@ -77,10 +77,10 @@ export default function LandingPage() {
       {/* Navbar */}
       <header className="sticky top-0 z-50 border-b border-gray-800 bg-gray-950/90 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center">
+          <Link to="/" className="flex items-center">
             <img src="/crest_black_logo.png" alt="CrestApp" className="h-8 w-auto object-contain" />
             <span className="font-bold text-lg tracking-tight">CrestApp</span>
-          </div>
+          </Link>
           <button
             onClick={() => navigate('/login')}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white border border-gray-700 transition-colors"
