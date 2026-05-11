@@ -77,10 +77,8 @@ export default function LandingPage() {
       {/* Navbar */}
       <header className="sticky top-0 z-50 border-b border-gray-800 bg-gray-950/90 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center">
-              <Shield className="w-4 h-4 text-white" />
-            </div>
+          <div className="flex items-center">
+            <img src="/crest_black_logo.png" alt="CrestApp" className="h-8 w-auto object-contain" />
             <span className="font-bold text-lg tracking-tight">CrestApp</span>
           </div>
           <button

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Shield, Eye, EyeOff } from 'lucide-react'
+import { Eye, EyeOff } from 'lucide-react'
 import { adminLogin } from '../../services/firebase/auth'
 import { useAuthStore } from '../../store/authStore'
 import toast from 'react-hot-toast'
@@ -35,9 +35,11 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
-          <div className="w-16 h-16 bg-brand-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-brand-900/50">
-            <Shield className="w-8 h-8 text-white" />
-          </div>
+          <img
+            src="/crest_black_logo.png"
+            alt="Crest Admin"
+            className="h-20 w-auto mb-4 object-contain"
+          />
           <h1 className="text-2xl font-bold text-white">Crest Admin</h1>
           <p className="text-gray-400 text-sm mt-1">Sign in to your admin account</p>
         </div>
