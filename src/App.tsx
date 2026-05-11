@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { onAdminAuthStateChanged, validateAdminSession } from './services/firebase/auth'
 import { useAuthStore } from './store/authStore'
 
@@ -24,6 +24,12 @@ import StageManagementPage from './pages/stage-management/StageManagementPage'
 import ModerationPage from './pages/moderation/ModerationPage'
 import LegalPage from './pages/legal/LegalPage'
 
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  return null
+}
+
 export default function App() {
   const { setAdmin, setLoading } = useAuthStore()
 
@@ -45,6 +51,8 @@ export default function App() {
   }, [setAdmin, setLoading])
 
   return (
+    <>
+    <ScrollToTop />
     <Routes>
       {/* Public routes */}
       <Route path="/" element={<LandingPage />} />
@@ -77,5 +85,6 @@ export default function App() {
       {/* Catch-all → landing */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
+    </>
   )
 }

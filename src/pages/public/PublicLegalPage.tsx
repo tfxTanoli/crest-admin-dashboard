@@ -14,6 +14,11 @@ const WEBSITE = 'www.crestapp.com'
 
 // ─── Section types ────────────────────────────────────────────────────────────
 
+interface BulletGroup {
+  intro?: string
+  bullets: string[]
+}
+
 interface Subsection {
   title: string
   bullets: string[]
@@ -23,6 +28,7 @@ interface Section {
   heading: string
   paragraphs?: string[]
   bullets?: string[]
+  bulletGroups?: BulletGroup[]
   numbered?: string[]
   subsections?: Subsection[]
   trailingParagraphs?: string[]
@@ -39,7 +45,7 @@ const PRIVACY_SECTIONS: Section[] = [
         title: 'a. Information You Provide',
         bullets: [
           'Account details (name, email, phone number)',
-          'Profile inputs used to generate your True Self Profile, Fruit of the Spirit Map, Shadow Map, and Crest Name',
+          "Profile inputs used to generate your True Self Profile, Fruit of the Spirit Map, Shadow Map, and Crest Name",
           "Chat messages within the app's community or support features",
           'Journey progress data (completed tasks, milestones, reflections)',
         ],
@@ -57,7 +63,7 @@ const PRIVACY_SECTIONS: Section[] = [
         bullets: [
           'Wallet balance',
           'Referral activity',
-          'Transaction history (non-bank, in-app only)',
+          'Transaction history (non bank, in app only)',
         ],
       },
     ],
@@ -67,7 +73,7 @@ const PRIVACY_SECTIONS: Section[] = [
     heading: '2. How We Use Your Information',
     paragraphs: ['We use your information to:'],
     bullets: [
-      'Provide the six-week transformation journey',
+      'Provide the six week transformation journey',
       'Generate personalized outputs (profiles, maps, crest, Crest Name)',
       'Track your progress and unlock stages',
       'Enable chat and community interactions',
@@ -90,7 +96,7 @@ const PRIVACY_SECTIONS: Section[] = [
   },
   {
     heading: '4. Data Storage & Security',
-    paragraphs: ['We use industry-standard security measures to protect your data, including:'],
+    paragraphs: ['We use industry standard security measures to protect your data, including:'],
     bullets: [
       'Encrypted communication (HTTPS)',
       'Secure cloud storage',
@@ -121,14 +127,14 @@ const PRIVACY_SECTIONS: Section[] = [
     trailingParagraphs: [`To exercise these rights, contact us at: ${SUPPORT_EMAIL}`],
   },
   {
-    heading: '7. Children\'s Privacy',
+    heading: "7. Children's Privacy",
     paragraphs: [
       'CrestApp is not intended for children under 13. We do not knowingly collect personal information from children. If you believe a child has provided information, contact us and we will delete it promptly.',
     ],
   },
   {
-    heading: '8. Third-Party Services',
-    paragraphs: ['CrestApp may use third-party tools such as:'],
+    heading: '8. Third Party Services',
+    paragraphs: ['CrestApp may use third party tools such as:'],
     bullets: [
       'Analytics providers',
       'Cloud hosting services',
@@ -167,12 +173,12 @@ const TERMS_SECTIONS: Section[] = [
   {
     heading: '2. Use of the App',
     paragraphs: [
-      'CrestApp provides a six-week guided transformation journey, personalized outputs, community features, and a shareable wallet system. You agree to use the App only for lawful purposes and in accordance with these Terms.',
+      'CrestApp provides a six week guided transformation journey, personalized outputs, community features, and a shareable wallet system. You agree to use the App only for lawful purposes and in accordance with these Terms.',
       'You agree not to:',
     ],
     bullets: [
       'Use the App for fraudulent or harmful activities',
-      'Interfere with the App\'s functionality',
+      "Interfere with the App's functionality",
       'Attempt to access accounts or data that do not belong to you',
       'Upload harmful, abusive, or inappropriate content',
     ],
@@ -192,12 +198,12 @@ const TERMS_SECTIONS: Section[] = [
     heading: '4. Wallet & Referral Rewards',
     paragraphs: [
       'CrestApp includes a shareable wallet that grows as others join through your referral link.',
-      'Important Notes:',
+      'Important Notes',
     ],
     bullets: [
       'Wallet rewards are not bank deposits',
       'Wallet balances are not legal tender',
-      'Rewards are non-transferable outside the App',
+      'Rewards are non transferable outside the App',
       'CrestApp may adjust or update the reward system at any time',
     ],
     trailingParagraphs: [
@@ -210,14 +216,14 @@ const TERMS_SECTIONS: Section[] = [
     bullets: [
       'Pay all applicable fees',
       'Use authorized payment methods',
-      'Understand that all payments are processed through third-party platforms (e.g., Google Play Billing)',
+      'Understand that all payments are processed through third party platforms (e.g., Google Play Billing)',
     ],
     trailingParagraphs: ['Refunds follow the policies of the payment platform used.'],
   },
   {
     heading: '6. Intellectual Property',
     paragraphs: [
-      'All content in CrestApp — including text, graphics, icons, crests, names, and outputs — is owned by CrestApp or licensed to us.',
+      'All content in CrestApp including text, graphics, icons, crests, names, and outputs is owned by CrestApp or licensed to us.',
       'You may not:',
     ],
     bullets: [
@@ -232,7 +238,15 @@ const TERMS_SECTIONS: Section[] = [
   {
     heading: '7. User Content',
     paragraphs: [
-      'You may submit reflections, chat messages, or other content. By doing so, you grant CrestApp a non-exclusive license to use that content for app functionality, moderation, and safety. You retain ownership of your personal reflections. We may remove content that violates these Terms or community guidelines.',
+      'You may submit reflections, chat messages, or other content. By doing so, you grant CrestApp a non exclusive license to use that content for:',
+    ],
+    bullets: [
+      'App functionality',
+      'Moderation',
+      'Safety and compliance',
+    ],
+    trailingParagraphs: [
+      'You retain ownership of your personal reflections. We may remove content that violates these Terms or community guidelines.',
     ],
   },
   {
@@ -243,15 +257,25 @@ const TERMS_SECTIONS: Section[] = [
   },
   {
     heading: '9. Disclaimers',
-    paragraphs: ['CrestApp provides guidance, reflection tools, and symbolic outputs. We do not provide:'],
-    bullets: [
-      'Medical advice',
-      'Psychological therapy',
-      'Financial advice',
-      'Professional counseling',
-    ],
-    trailingParagraphs: [
-      'Your use of the App is at your own risk. We make no guarantees regarding personal transformation outcomes, financial earnings, or community interactions.',
+    paragraphs: ['CrestApp provides guidance, reflection tools, and symbolic outputs.'],
+    bulletGroups: [
+      {
+        intro: 'We do not provide:',
+        bullets: [
+          'Medical advice',
+          'Psychological therapy',
+          'Financial advice',
+          'Professional counseling',
+        ],
+      },
+      {
+        intro: 'Your use of the App is at your own risk. We make no guarantees regarding:',
+        bullets: [
+          'Personal transformation outcomes',
+          'Financial earnings',
+          'Community interactions',
+        ],
+      },
     ],
   },
   {
@@ -262,7 +286,7 @@ const TERMS_SECTIONS: Section[] = [
       'Loss of rewards or wallet balances',
       'Emotional or psychological outcomes',
       'Damages arising from misuse of the App',
-      'Third-party service failures',
+      'Third party service failures',
     ],
     trailingParagraphs: ['Our total liability will not exceed the amount you paid for the App (if any).'],
   },
@@ -285,13 +309,13 @@ const TERMS_SECTIONS: Section[] = [
   {
     heading: '13. Governing Law',
     paragraphs: [
-      'These Terms are governed by the laws of Nigeria. Any disputes will be resolved under the jurisdiction of Nigerian courts.',
+      'These Terms are governed by the laws of [Insert Country/Region]. Any disputes will be resolved under the jurisdiction of [Insert Courts].',
     ],
   },
   {
     heading: '14. Contact Us',
     paragraphs: ['For questions or concerns, contact us at:'],
-    bullets: [`Email: ${SUPPORT_EMAIL}`, `Website: ${WEBSITE}`, `Phone: ${PHONE}`],
+    bullets: [`Email: ${SUPPORT_EMAIL}`, `Website: ${WEBSITE}`],
   },
 ]
 
@@ -336,13 +360,13 @@ const CSAE_SECTIONS: Section[] = [
     heading: '4. Reporting and Enforcement',
     paragraphs: [
       'We take all reports seriously.',
-      'If CSAE-related content or behavior is detected or reported:',
+      'If CSAE related content or behavior is detected or reported:',
     ],
     numbered: [
       'The account is immediately suspended',
       'Content is reviewed by our safety team',
       'Confirmed violations result in permanent account termination',
-      'Relevant information may be forwarded to law enforcement, child protection agencies, and platform safety teams (Google, Apple, etc.)',
+      'Relevant information may be forwarded to: law enforcement, child protection agencies, and platform safety teams (Google, Apple, etc.)',
     ],
     trailingParagraphs: ['We cooperate fully with legal authorities.'],
   },
@@ -353,7 +377,7 @@ const CSAE_SECTIONS: Section[] = [
       'Automated detection tools',
       'Human moderation',
       'Behavior monitoring for grooming patterns',
-      'Age-based access restrictions',
+      'Age based access restrictions',
       'Account verification when necessary',
     ],
     trailingParagraphs: [
@@ -373,9 +397,7 @@ const CSAE_SECTIONS: Section[] = [
   },
   {
     heading: '7. Cooperation With Authorities',
-    paragraphs: [
-      'CrestApp complies with all applicable laws regarding CSAE, including:',
-    ],
+    paragraphs: ['CrestApp complies with all applicable laws regarding CSAE, including:'],
     bullets: [
       'Reporting obligations',
       'Preservation of evidence when legally required',
@@ -396,7 +418,7 @@ const CSAE_SECTIONS: Section[] = [
   {
     heading: '9. Contact Us',
     paragraphs: [
-      'If you have concerns or need to report CSAE-related content or behavior, contact us at:',
+      'If you have concerns or need to report CSAE related content or behavior, contact us at:',
     ],
     bullets: [`Email: ${SUPPORT_EMAIL}`, `Website: ${WEBSITE}`, `Phone: ${PHONE}`],
   },
@@ -426,12 +448,25 @@ const DOCS: Record<
     label: 'Child Safety Standards (CSAE)',
     icon: ShieldAlert,
     intro:
-      'CrestApp ("we", "our", "us") is committed to maintaining a safe, respectful, and secure environment for all users. We uphold a zero-tolerance policy toward Child Sexual Abuse and Exploitation (CSAE) in any form. This document outlines our standards, expectations, and enforcement procedures.',
+      'CrestApp ("we", "our", "us") is committed to maintaining a safe, respectful, and secure environment for all users. We uphold a zero tolerance policy toward Child Sexual Abuse and Exploitation (CSAE) in any form. This document outlines our standards, expectations, and enforcement procedures.',
     sections: CSAE_SECTIONS,
   },
 }
 
 // ─── Section renderer ─────────────────────────────────────────────────────────
+
+function BulletList({ bullets }: { bullets: string[] }) {
+  return (
+    <ul className="space-y-1.5 pl-4">
+      {bullets.map((b, i) => (
+        <li key={i} className="flex gap-2 text-sm text-gray-400">
+          <span className="text-brand-400 mt-0.5 flex-shrink-0">•</span>
+          {b}
+        </li>
+      ))}
+    </ul>
+  )
+}
 
 function DocSection({ section }: { section: Section }) {
   return (
@@ -447,28 +482,25 @@ function DocSection({ section }: { section: Section }) {
           {section.subsections.map((sub) => (
             <div key={sub.title} className="space-y-1.5">
               <p className="text-sm font-medium text-gray-300">{sub.title}</p>
-              <ul className="space-y-1 pl-4">
-                {sub.bullets.map((b, i) => (
-                  <li key={i} className="flex gap-2 text-sm text-gray-400">
-                    <span className="text-brand-400 mt-0.5 flex-shrink-0">•</span>
-                    {b}
-                  </li>
-                ))}
-              </ul>
+              <BulletList bullets={sub.bullets} />
             </div>
           ))}
         </div>
       )}
 
-      {section.bullets && (
-        <ul className="space-y-1.5 pl-4">
-          {section.bullets.map((b, i) => (
-            <li key={i} className="flex gap-2 text-sm text-gray-400">
-              <span className="text-brand-400 mt-0.5 flex-shrink-0">•</span>
-              {b}
-            </li>
+      {section.bullets && <BulletList bullets={section.bullets} />}
+
+      {section.bulletGroups && (
+        <div className="space-y-4">
+          {section.bulletGroups.map((group, i) => (
+            <div key={i} className="space-y-1.5">
+              {group.intro && (
+                <p className="text-sm text-gray-400 leading-relaxed">{group.intro}</p>
+              )}
+              <BulletList bullets={group.bullets} />
+            </div>
           ))}
-        </ul>
+        </div>
       )}
 
       {section.numbered && (
@@ -541,9 +573,7 @@ export default function PublicLegalPage({ type }: Props) {
       <footer className="border-t border-gray-800 mt-12">
         <div className="max-w-4xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-600">
           <span>© {new Date().getFullYear()} CrestApp. All rights reserved.</span>
-          <a href={`tel:${PHONE}`} className="hover:text-gray-400 transition-colors">
-            {PHONE}
-          </a>
+          <a href={`tel:${PHONE}`} className="hover:text-gray-400 transition-colors">{PHONE}</a>
         </div>
       </footer>
     </div>
