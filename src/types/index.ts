@@ -139,10 +139,12 @@ export interface DistributionSettings {
   journey_percent: number
   crest_percent: number
   company_percent: number
-  journey_fee_usd?: number
-  crest_single_fee?: number
-  crest_spouse_fee?: number
-  crest_member_percent?: number
+  journey_fee_usd: number
+  crest_single_fee: number
+  crest_spouse_fee: number
+  crest_member_percent: number
+  name_single_fee: number
+  name_spouse_fee: number
 }
 
 // Payments

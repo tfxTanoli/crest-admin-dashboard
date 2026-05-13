@@ -9,6 +9,8 @@ import LandingPage from './pages/landing/LandingPage'
 import PublicLegalPage from './pages/public/PublicLegalPage'
 import ContactPage from './pages/public/ContactPage'
 import AccountDeletionPage from './pages/public/AccountDeletionPage'
+import PricingPage from './pages/public/PricingPage'
+import RefundPolicyPage from './pages/public/RefundPolicyPage'
 import LoginPage from './pages/auth/LoginPage'
 import DashboardPage from './pages/dashboard/DashboardPage'
 import UsersPage from './pages/users/UsersPage'
@@ -64,6 +66,8 @@ export default function App() {
       <Route path="/csae" element={<PublicLegalPage type="csae_policy" />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/delete-account" element={<AccountDeletionPage />} />
+      <Route path="/pricing" element={<PricingPage />} />
+      <Route path="/refund-policy" element={<RefundPolicyPage />} />
 
       {/* Protected admin routes */}
       <Route element={<ProtectedRoute />}>

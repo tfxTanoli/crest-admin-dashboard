@@ -9,16 +9,20 @@ import type { DistributionSettings } from '../../types'
 import { PageSpinner } from '../../components/ui/Spinner'
 import toast from 'react-hot-toast'
 
+const DEFAULTS: DistributionSettings = {
+  journey_percent: 25,
+  crest_percent: 25,
+  company_percent: 50,
+  crest_member_percent: 25,
+  journey_fee_usd: 100,
+  crest_single_fee: 100,
+  crest_spouse_fee: 100,
+  name_single_fee: 100,
+  name_spouse_fee: 100,
+}
+
 export default function DistributionPage() {
-  const [form, setForm] = useState<DistributionSettings>({
-    journey_percent: 25,
-    crest_percent: 25,
-    company_percent: 50,
-    journey_fee_usd: 1,
-    crest_single_fee: 2,
-    crest_spouse_fee: 3,
-    crest_member_percent: 25,
-  })
+  const [form, setForm] = useState<DistributionSettings>(DEFAULTS)
 
   const { data, isLoading } = useQuery({
     queryKey: ['distribution-settings'],
@@ -41,13 +45,12 @@ export default function DistributionPage() {
 
   const journeyTotal = (form.journey_percent ?? 0) + (form.crest_percent ?? 0) + (form.company_percent ?? 0)
   const totalValid = journeyTotal === 100
-  const crestCompany = 100 - (form.crest_member_percent ?? 0)
 
   // Live preview helpers
-  const fee = form.journey_fee_usd ?? 100
-  const journeyPool = (fee * (form.journey_percent ?? 0)) / 100
-  const crestPool   = (fee * (form.crest_percent ?? 0)) / 100
-  const companyShare = (fee * (form.company_percent ?? 0)) / 100
+  const journeyFee = form.journey_fee_usd ?? 1
+  const journeyPool = (journeyFee * (form.journey_percent ?? 0)) / 100
+  const crestPool   = (journeyFee * (form.crest_percent ?? 0)) / 100
+  const companyShare = (journeyFee * (form.company_percent ?? 0)) / 100
 
   if (isLoading) return <PageSpinner />
 
@@ -55,8 +58,68 @@ export default function DistributionPage() {
     <div className="space-y-6 max-w-2xl">
       <div>
         <h1 className="text-2xl font-bold text-white">Distribution Settings</h1>
-        <p className="text-gray-400 text-sm mt-1">Configure payment distribution percentages and fees</p>
+        <p className="text-gray-400 text-sm mt-1">Configure payment fees and distribution percentages</p>
       </div>
+
+      {/* Payment Fees */}
+      <Card title="Payment Fees (USD)">
+        <p className="text-gray-400 text-xs mb-4">
+          All amounts are in USD. Changes take effect immediately for new payments after saving.
+        </p>
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+            <Input
+              label="Journey Fee (USD)"
+              type="number"
+              min="0"
+              step="0.01"
+              value={form.journey_fee_usd ?? ''}
+              onChange={(e) => handleChange('journey_fee_usd', e.target.value)}
+              hint="Required payment to join the journey"
+            />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Input
+              label="Crest Single Fee (USD)"
+              type="number"
+              min="0"
+              step="0.01"
+              value={form.crest_single_fee ?? ''}
+              onChange={(e) => handleChange('crest_single_fee', e.target.value)}
+              hint="Individual crest celebration"
+            />
+            <Input
+              label="Crest Spouse Fee (USD)"
+              type="number"
+              min="0"
+              step="0.01"
+              value={form.crest_spouse_fee ?? ''}
+              onChange={(e) => handleChange('crest_spouse_fee', e.target.value)}
+              hint="Joint crest celebration with partner"
+            />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Input
+              label="Name Single Fee (USD)"
+              type="number"
+              min="0"
+              step="0.01"
+              value={form.name_single_fee ?? ''}
+              onChange={(e) => handleChange('name_single_fee', e.target.value)}
+              hint="Unlock own Crest Name"
+            />
+            <Input
+              label="Name Spouse Fee (USD)"
+              type="number"
+              min="0"
+              step="0.01"
+              value={form.name_spouse_fee ?? ''}
+              onChange={(e) => handleChange('name_spouse_fee', e.target.value)}
+              hint="Unlock own + spouse Crest Name"
+            />
+          </div>
+        </div>
+      </Card>
 
       {/* Journey Distribution */}
       <Card title="Journey Payment Distribution">
@@ -99,16 +162,6 @@ export default function DistributionPage() {
               hint="Platform earnings"
             />
           </div>
-
-          <Input
-            label="Journey Fee (USD)"
-            type="number"
-            min="0"
-            step="0.01"
-            value={form.journey_fee_usd ?? ''}
-            onChange={(e) => handleChange('journey_fee_usd', e.target.value)}
-            hint="Required payment to join the journey"
-          />
         </div>
       </Card>
 
@@ -138,32 +191,10 @@ export default function DistributionPage() {
         </div>
       </Card>
 
-      {/* Fees */}
-      <Card title="Crest Fees">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Input
-            label="Single Crest Fee (USD)"
-            type="number"
-            min="0"
-            step="0.01"
-            value={form.crest_single_fee ?? ''}
-            onChange={(e) => handleChange('crest_single_fee', e.target.value)}
-          />
-          <Input
-            label="Spouse Crest Fee (USD)"
-            type="number"
-            min="0"
-            step="0.01"
-            value={form.crest_spouse_fee ?? ''}
-            onChange={(e) => handleChange('crest_spouse_fee', e.target.value)}
-          />
-        </div>
-      </Card>
-
       {/* Live preview */}
       <Card title="Live Preview — Journey Payment Breakdown">
         <p className="text-gray-400 text-xs mb-4">
-          Based on a ${fee.toFixed(2)} journey fee with current percentages.
+          Based on a ${journeyFee.toFixed(2)} journey fee with current percentages.
         </p>
         <div className="space-y-2 text-sm">
           <div className="flex justify-between py-2 border-b border-gray-700">

@@ -204,6 +204,14 @@ export default function LandingPage() {
               Account Deletion
             </Link>
             <span className="text-gray-700">|</span>
+            <Link to="/pricing" className="hover:text-gray-300 transition-colors">
+              Pricing
+            </Link>
+            <span className="text-gray-700">|</span>
+            <Link to="/refund-policy" className="hover:text-gray-300 transition-colors">
+              Refund Policy
+            </Link>
+            <span className="text-gray-700">|</span>
             <a href="mailto:support@crest.city" className="hover:text-gray-300 transition-colors">
               support@crest.city
             </a>

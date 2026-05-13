@@ -130,10 +130,12 @@ export async function fetchDistributionSettings(): Promise<DistributionSettings>
     journey_percent: 25,
     crest_percent: 25,
     company_percent: 50,
-    journey_fee_usd: 1,
-    crest_single_fee: 2,
-    crest_spouse_fee: 3,
+    journey_fee_usd: 100,
+    crest_single_fee: 100,
+    crest_spouse_fee: 100,
     crest_member_percent: 25,
+    name_single_fee: 100,
+    name_spouse_fee: 100,
   }
 }
 
