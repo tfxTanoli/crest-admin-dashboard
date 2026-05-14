@@ -97,9 +97,22 @@ export default function PaymentsPage() {
       ),
     },
     {
+      key: 'provider',
+      header: 'Provider',
+      render: (p) => (
+        <Badge variant={p.provider === 'paddle' ? 'info' : 'default'}>
+          {p.provider === 'paddle' ? 'Paddle' : 'Paystack'}
+        </Badge>
+      ),
+    },
+    {
       key: 'status',
       header: 'Status',
-      render: () => <Badge variant="success">Completed</Badge>,
+      render: (p) => (
+        <Badge variant="success">
+          {p.status === 'completed' || p.status === 'verified' ? 'Completed' : p.status}
+        </Badge>
+      ),
     },
     {
       key: 'date',

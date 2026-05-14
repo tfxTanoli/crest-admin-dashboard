@@ -19,11 +19,14 @@ async function getAdminToken(): Promise<string> {
 export interface PaymentRecord {
   id: string
   userId: string
-  paymentType: 'journey' | 'crest'
+  paymentType: 'journey' | 'crest' | 'name'
   crestType?: string
   amount: number
   description: string
-  reference: string
+  reference?: string
+  paddleTransactionId?: string
+  provider?: 'paystack' | 'paddle'
+  status: string
   createdAt: unknown
 }
 
@@ -37,17 +40,23 @@ function mapPaymentDoc(d: import('firebase/firestore').QueryDocumentSnapshot): P
     amount: data.amountUsd ?? 0,
     description: data.paymentType === 'journey'
       ? 'Journey Payment'
+      : data.paymentType === 'name'
+      ? `Name Payment (${data.crestType ?? 'name_single'})`
       : `Crest Payment (${data.crestType ?? 'single'})`,
     reference: data.reference,
+    paddleTransactionId: data.paddleTransactionId,
+    provider: data.provider ?? 'paystack',
+    status: data.status,
     createdAt: data.createdAt,
   }
 }
 
 export async function fetchPaymentTransactions(limitCount = 200): Promise<PaymentRecord[]> {
+  // Include both legacy Paystack ('verified') and Paddle ('completed') payments
   const snap = await getDocs(
     query(
       collection(db, 'payments'),
-      where('status', '==', 'verified'),
+      where('status', 'in', ['verified', 'completed']),
       orderBy('createdAt', 'desc'),
       limit(limitCount)
     )
@@ -62,7 +71,7 @@ export async function fetchPaymentStats(): Promise<{
   todayCount: number
 }> {
   const snap = await getDocs(
-    query(collection(db, 'payments'), where('status', '==', 'verified'))
+    query(collection(db, 'payments'), where('status', 'in', ['verified', 'completed']))
   )
 
   const now = new Date()
