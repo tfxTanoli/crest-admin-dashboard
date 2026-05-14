@@ -1,8 +1,7 @@
 import { useNavigate, Link } from 'react-router-dom'
-import { Shield, ArrowLeft, RotateCcw, CheckCircle2, XCircle, Mail, Phone, AlertTriangle } from 'lucide-react'
+import { Shield, ArrowLeft, RotateCcw, CheckCircle2, XCircle, Mail, AlertTriangle } from 'lucide-react'
 
 const SUPPORT_EMAIL = 'crestapp@crest.city'
-const PHONE = '+2349025767556'
 const LAST_UPDATED = 'May 13, 2026'
 
 interface PolicySection {
@@ -18,102 +17,74 @@ const SECTIONS: PolicySection[] = [
   {
     heading: '1. Overview',
     paragraphs: [
-      'CrestApp provides digital services, including access to a six-week guided transformation programme, personalised outputs, community features, and milestone experiences. Because these are digital products that are delivered immediately upon purchase, all sales are generally final.',
-      'This policy explains when refunds may be considered, how to request one, and the timeframes involved.',
+      'CrestApp provides digital services, including access to a six-week guided transformation journey, personalised identity maps, and related digital features. All purchases are processed securely by Paddle.',
+      'This policy explains your refund rights, including the 14-day withdrawal period required under applicable consumer laws.',
     ],
   },
   {
-    heading: '2. General Refund Rule',
+    heading: '2. 14-Day Right to Withdraw',
     paragraphs: [
-      'All payments made inside CrestApp are for digital services. Once access to a feature or experience has been granted, the purchase is considered delivered and is non-refundable.',
-      'This applies to:',
-    ],
-    bullets: [
-      'Journey Access ($100): once unlocked and access to Week 1 content is granted',
-      'Crest Name Unlock: once the Crest Name has been generated and shown to the user',
-      'Crest Celebration: once a booking has been confirmed and a celebration slot reserved',
-    ],
-    trailingParagraphs: [
-      'By completing a payment inside CrestApp, you acknowledge that the digital service is delivered immediately and that you have forfeited your right to a cooling-off period for that purchase.',
+      'If you are a consumer residing in the EU, EEA, UK, or any region where a statutory cooling-off period applies, you have the right to withdraw from your purchase within 14 days of completing the transaction.',
+      'To exercise this right, you must contact Paddle directly using the instructions in your purchase confirmation email.',
+      'Important: If you choose to access or begin using CrestApp\'s digital content during this 14-day period, you may be asked to confirm that you agree for the service to begin immediately. Once you agree and access begins, you may lose your right to withdraw.',
+      'This process is managed by Paddle in accordance with their Buyer Terms.',
     ],
   },
   {
-    heading: '3. Eligible Refund Circumstances',
+    heading: '3. Refunds Outside the 14-Day Withdrawal Period',
     type: 'eligible',
     paragraphs: [
-      'A refund may be considered in the following limited circumstances:',
+      'After the 14-day withdrawal period has passed, refunds may still be considered in limited cases, including:',
     ],
     bullets: [
-      'Duplicate payment: you were charged more than once for the same purchase due to a technical error',
-      'Payment processed but access not granted: you were charged but the feature was never unlocked within 24 hours',
-      'Unauthorised transaction: a payment was made on your account without your knowledge or consent (subject to investigation)',
-      'Technical failure: a verified platform failure prevented you from using a paid feature, and no reasonable alternative was offered',
+      'Duplicate payment',
+      'Payment processed but access not granted',
+      'Verified unauthorised transaction',
+      'Verified technical failure preventing access',
     ],
     trailingParagraphs: [
-      'All eligible refund requests are subject to investigation. CrestApp reserves the right to request supporting evidence before approving any refund.',
+      'All such requests are handled by Paddle as the Merchant of Record.',
     ],
   },
   {
-    heading: '4. Non-Refundable Circumstances',
+    heading: '4. How to Request a Refund',
+    paragraphs: [
+      'All refund requests must be submitted directly to Paddle, using the link provided in your purchase confirmation email or via Paddle\'s support page.',
+      'Please include:',
+    ],
+    bullets: [
+      'The email used for your purchase',
+      'The transaction receipt or order number',
+      'A brief description of your request',
+    ],
+    trailingParagraphs: [
+      'Paddle will review your request and process any approved refund to your original payment method.',
+    ],
+  },
+  {
+    heading: '5. Non-Refundable Situations',
     type: 'ineligible',
     paragraphs: [
-      'The following are not eligible for refunds under any circumstances:',
+      'In line with Paddle\'s Buyer Terms, refunds may not be granted if:',
     ],
     bullets: [
-      'You changed your mind after purchasing',
-      'You did not complete the programme after purchasing Journey Access',
-      'You were dissatisfied with your personalised outputs (Crest Name, profile maps)',
-      'You were unable to attend a Crest Celebration after confirmation',
-      'Your account was suspended or terminated due to violation of our Terms & Conditions',
-      'Wallet earnings or referral rewards: these are not purchases and are not refundable',
-      'Partial use: you used part of a feature or stage before requesting a refund',
+      'You continue using the digital service after agreeing to immediate access',
+      'You request a refund outside the 14-day withdrawal period (unless eligible under Section 3)',
+      'The transaction was completed by a business entity (business purchases may not qualify for consumer withdrawal rights)',
     ],
   },
   {
-    heading: '5. Refund Request Timeframe',
+    heading: '6. Contact',
     paragraphs: [
-      'Refund requests must be submitted within 7 days of the payment date. Requests submitted after this window will not be considered, except in cases of ongoing unauthorised access or verified fraud.',
+      'For questions about your purchase or refund status, please contact Paddle using the details in your receipt.',
+      `For general support with CrestApp features, email: ${SUPPORT_EMAIL}`,
     ],
   },
   {
-    heading: '6. How to Request a Refund',
-    paragraphs: ['To submit a refund request, follow these steps:'],
-    numbered: [
-      'Email crestapp@crest.city with the subject line: "Refund Request - [Your Name]"',
-      'Include your registered account email address',
-      'Describe the reason for the request and the payment you believe qualifies',
-      'Attach any supporting evidence (e.g., payment confirmation, screenshots)',
-      'Our team will acknowledge your request within 2 business days',
-      'If approved, the refund will be processed within 5–10 business days to your original payment method',
-    ],
-    trailingParagraphs: [
-      'Refunds are issued to the original payment method used. We cannot issue refunds to a different card or account.',
-    ],
-  },
-  {
-    heading: '7. Payment Platform Disputes',
+    heading: '7. Changes to This Policy',
     paragraphs: [
-      'Payments on CrestApp are processed through Paystack, a secure third-party payment provider. If you believe a charge was fraudulent or unauthorised, you may also contact your card issuer or bank directly.',
-      'Please note: initiating a chargeback without first contacting CrestApp support may result in the suspension of your account pending investigation.',
+      'CrestApp may update this Refund Policy from time to time. The updated version will apply to purchases made after the revision date shown above.',
     ],
-  },
-  {
-    heading: '8. Wallet Balances',
-    paragraphs: [
-      'In-app wallet balances are referral rewards, not purchases. They are not subject to this refund policy. Wallet balances can be withdrawn via the in-app withdrawal feature.',
-      'If a wallet balance was incorrectly adjusted due to a technical error, contact our support team and we will investigate.',
-    ],
-  },
-  {
-    heading: '9. Changes to This Policy',
-    paragraphs: [
-      'CrestApp may update this Refund Policy from time to time. The updated policy will apply to purchases made after the revision date shown at the top of this page. Continued use of the app constitutes acceptance of the current policy.',
-    ],
-  },
-  {
-    heading: '10. Contact Us',
-    paragraphs: ['For refund requests or questions about this policy, reach out to our support team:'],
-    bullets: [`Email: ${SUPPORT_EMAIL}`, `Phone: ${PHONE}`],
   },
 ]
 
@@ -148,17 +119,6 @@ function ContactCard() {
           <p className="text-xs text-gray-500 uppercase tracking-wide font-medium mb-0.5">Email Support</p>
           <span className="text-brand-400 font-semibold group-hover:text-brand-300 transition-colors text-sm underline underline-offset-2">
             {SUPPORT_EMAIL}
-          </span>
-        </div>
-      </a>
-      <a href={`tel:${PHONE}`} className="flex items-center gap-3 group">
-        <div className="w-9 h-9 bg-brand-900/60 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-brand-800/60 transition-colors">
-          <Phone className="w-4 h-4 text-brand-400" />
-        </div>
-        <div>
-          <p className="text-xs text-gray-500 uppercase tracking-wide font-medium mb-0.5">Phone</p>
-          <span className="text-brand-400 font-semibold group-hover:text-brand-300 transition-colors text-sm">
-            {PHONE}
           </span>
         </div>
       </a>
@@ -234,19 +194,19 @@ export default function RefundPolicyPage() {
         </div>
 
         <p className="text-sm text-gray-400 leading-relaxed mt-6 mb-4">
-          This Refund Policy applies to all purchases made inside the CrestApp mobile application.
-          Please read it carefully before making any payment. By completing a purchase, you agree
-          to this policy.
+          This Refund Policy applies to all purchases made through CrestApp and processed by Paddle,
+          our authorised reseller and Merchant of Record. By completing a purchase, you agree to
+          this policy and to Paddle's Buyer Terms.
         </p>
 
         {/* Summary banner */}
         <div className="flex items-start gap-3 bg-amber-900/20 border border-amber-700/40 rounded-xl px-4 py-3 mb-8">
           <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
           <p className="text-sm text-amber-300/90">
-            <strong>Summary:</strong> CrestApp sells digital services delivered immediately upon
-            purchase. Sales are generally final. Refunds are only considered for duplicate
-            charges, undelivered access, or unauthorised transactions, and must be requested
-            within 7 days.
+            <strong>Summary:</strong> CrestApp purchases are processed by Paddle. Consumers in the
+            EU, EEA, and UK have a 14-day right to withdraw. After this period, refunds are only
+            considered in limited cases such as duplicate charges, undelivered access, or verified
+            technical failures.
           </p>
         </div>
 
@@ -259,9 +219,9 @@ export default function RefundPolicyPage() {
             </div>
             <ul className="space-y-1.5">
               {[
+                '14-day withdrawal (EU/EEA/UK)',
                 'Duplicate payment error',
                 'Paid but access not granted',
-                'Unauthorised transaction',
                 'Verified technical failure',
               ].map((item, i) => (
                 <li key={i} className="text-xs text-gray-400 flex items-start gap-1.5">
@@ -278,10 +238,9 @@ export default function RefundPolicyPage() {
             </div>
             <ul className="space-y-1.5">
               {[
-                'Changed your mind',
-                'Did not complete journey',
-                'Unhappy with outputs',
-                'Account suspended/banned',
+                'Used service after confirming immediate access',
+                'Outside 14-day period (see Section 3)',
+                'Business entity purchases',
               ].map((item, i) => (
                 <li key={i} className="text-xs text-gray-400 flex items-start gap-1.5">
                   <span className="text-red-400 flex-shrink-0 mt-0.5">✗</span>

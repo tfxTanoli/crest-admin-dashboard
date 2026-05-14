@@ -468,7 +468,7 @@ const DOCS: Record<
     label: 'Terms & Conditions',
     icon: BookOpen,
     intro:
-      'These Terms & Conditions ("Terms") govern your use of the CrestApp mobile application ("CrestApp", "we", "our", "us"). By downloading or using CrestApp, you agree to be bound by these Terms. If you do not agree, please do not use the App.',
+      'These Terms & Conditions ("Terms") govern your use of the CrestApp mobile application ("CrestApp", "we", "our", "us", "Gogagga Software", "GoGagga Agro Ventures Ltd", "ikeSOFT Corp"). By downloading or using CrestApp, you agree to be bound by these Terms. If you do not agree, please do not use the App.',
     sections: TERMS_SECTIONS,
   },
   csae_policy: {
