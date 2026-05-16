@@ -81,6 +81,15 @@ export default function LandingPage() {
             <img src="/crest_black_logo.png" alt="CrestApp" className="h-8 w-auto object-contain" />
             <span className="font-bold text-lg tracking-tight">CrestApp</span>
           </Link>
+          {/* Desktop nav links */}
+          <nav className="hidden md:flex items-center gap-6">
+            <Link to="/articles" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">Articles</Link>
+            <Link to="/pricing" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">Pricing</Link>
+            <Link to="/contact" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">Contact</Link>
+            <Link to="/privacy-policy" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">Privacy</Link>
+            <Link to="/terms" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">Terms</Link>
+          </nav>
+
           <button
             onClick={() => navigate('/login')}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white border border-gray-700 transition-colors"
