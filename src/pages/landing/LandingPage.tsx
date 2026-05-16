@@ -184,6 +184,10 @@ export default function LandingPage() {
             <span>© {new Date().getFullYear()} CrestApp. All rights reserved.</span>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-gray-500">
+            <Link to="/articles" className="hover:text-gray-300 transition-colors">
+              Insights
+            </Link>
+            <span className="text-gray-700">|</span>
             <Link to="/privacy-policy" className="hover:text-gray-300 transition-colors">
               Privacy Policy
             </Link>

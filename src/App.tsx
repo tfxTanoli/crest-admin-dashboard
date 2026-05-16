@@ -27,6 +27,7 @@ import CompanyWalletPage from './pages/wallet/CompanyWalletPage'
 import StageManagementPage from './pages/stage-management/StageManagementPage'
 import ModerationPage from './pages/moderation/ModerationPage'
 import LegalPage from './pages/legal/LegalPage'
+import ArticlesPage from './pages/articles/ArticlesPage'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -68,6 +69,7 @@ export default function App() {
       <Route path="/delete-account" element={<AccountDeletionPage />} />
       <Route path="/pricing" element={<PricingPage />} />
       <Route path="/refund-policy" element={<RefundPolicyPage />} />
+      <Route path="/articles" element={<ArticlesPage />} />
 
       {/* Protected admin routes */}
       <Route element={<ProtectedRoute />}>
