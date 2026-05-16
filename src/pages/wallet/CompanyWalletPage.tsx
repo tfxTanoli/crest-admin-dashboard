@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react'
+﻿import { useEffect, useState, useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Building2, TrendingUp, Repeat2, Crown } from 'lucide-react'
 import StatCard from '../../components/shared/StatCard'
@@ -94,7 +94,7 @@ export default function CompanyWalletPage() {
         t.crestType ? (
           <Badge variant="success">{t.crestType}</Badge>
         ) : (
-          <span className="text-gray-600">—</span>
+          <span className="text-gray-600">-</span>
         ),
     },
     {

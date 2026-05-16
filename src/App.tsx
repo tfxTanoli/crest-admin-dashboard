@@ -28,6 +28,7 @@ import StageManagementPage from './pages/stage-management/StageManagementPage'
 import ModerationPage from './pages/moderation/ModerationPage'
 import LegalPage from './pages/legal/LegalPage'
 import ArticlesPage from './pages/articles/ArticlesPage'
+import ArticlesAdminPage from './pages/articles-admin/ArticlesAdminPage'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -89,6 +90,7 @@ export default function App() {
           <Route path="/analytics" element={<AnalyticsPage />} />
           <Route path="/system" element={<SystemPage />} />
           <Route path="/legal" element={<LegalPage />} />
+          <Route path="/articles-admin" element={<ArticlesAdminPage />} />
         </Route>
       </Route>
 

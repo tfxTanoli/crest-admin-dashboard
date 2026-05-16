@@ -16,6 +16,7 @@ import {
   Building2,
   ChevronRight,
   FileText,
+  BookOpen,
   X,
 } from 'lucide-react'
 
@@ -63,6 +64,7 @@ const navSections = [
       { to: '/crests', icon: Shield, label: 'Crests' },
       { to: '/system', icon: Settings, label: 'System Config' },
       { to: '/legal', icon: FileText, label: 'Legal Documents' },
+      { to: '/articles-admin', icon: BookOpen, label: 'Articles' },
     ],
   },
 ]

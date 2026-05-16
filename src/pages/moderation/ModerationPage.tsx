@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { ShieldOff, ShieldCheck, RotateCcw, Trash2, AlertTriangle } from 'lucide-react'
 import DataTable, { type Column } from '../../components/shared/DataTable'
@@ -65,7 +65,7 @@ export default function ModerationPage() {
       header: 'User',
       render: (u) => (
         <div>
-          <p className="text-sm font-medium text-white">{u.full_name || '—'}</p>
+          <p className="text-sm font-medium text-white">{u.full_name || '-'}</p>
           <p className="text-xs text-gray-400">{u.email}</p>
         </div>
       ),
@@ -73,7 +73,7 @@ export default function ModerationPage() {
     {
       key: 'spiritual',
       header: 'Spiritual Name',
-      render: (u) => <span className="text-gray-300 text-sm">{u.spiritual_name || '—'}</span>,
+      render: (u) => <span className="text-gray-300 text-sm">{u.spiritual_name || '-'}</span>,
     },
     {
       key: 'stage',
@@ -107,7 +107,7 @@ export default function ModerationPage() {
       header: 'User',
       render: (u) => (
         <div>
-          <p className="text-sm font-medium text-white">{u.full_name || '—'}</p>
+          <p className="text-sm font-medium text-white">{u.full_name || '-'}</p>
           <p className="text-xs text-gray-400">{u.email}</p>
         </div>
       ),
@@ -115,7 +115,7 @@ export default function ModerationPage() {
     {
       key: 'spiritual',
       header: 'Spiritual Name',
-      render: (u) => <span className="text-gray-300 text-sm">{u.spiritual_name || '—'}</span>,
+      render: (u) => <span className="text-gray-300 text-sm">{u.spiritual_name || '-'}</span>,
     },
     {
       key: 'stage',
@@ -172,7 +172,7 @@ export default function ModerationPage() {
       {blockedUsers.length === 0 && deletedUsers.length === 0 && !blockedLoading && !deletedLoading && (
         <div className="flex items-center gap-3 p-4 bg-green-900/20 border border-green-800/40 rounded-xl">
           <ShieldCheck className="w-5 h-5 text-green-400 flex-shrink-0" />
-          <p className="text-sm text-green-300">Platform is clean — no blocked or deleted users.</p>
+          <p className="text-sm text-green-300">Platform is clean, no blocked or deleted users.</p>
         </div>
       )}
 

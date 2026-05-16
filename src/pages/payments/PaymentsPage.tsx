@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+﻿import { useState, useMemo } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { CreditCard, TrendingUp, Calendar, Users, AlertTriangle, RefreshCw } from 'lucide-react'
 import DataTable, { type Column } from '../../components/shared/DataTable'
@@ -146,7 +146,7 @@ export default function PaymentsPage() {
       header: 'Error',
       render: (p) => (
         <span className="text-xs text-red-400 truncate max-w-[180px] block">
-          {p.distributionError ?? '—'}
+          {p.distributionError ?? '-'}
         </span>
       ),
     },
@@ -239,7 +239,7 @@ export default function PaymentsPage() {
 
           {retryMutation.isSuccess && (
             <div className="text-sm text-green-400 bg-green-900/30 px-3 py-2 rounded-lg">
-              Retry complete — {retryMutation.data.results.filter((r) => r.success).length}/
+              Retry complete, {retryMutation.data.results.filter((r) => r.success).length}/
               {retryMutation.data.retried} succeeded.
             </div>
           )}

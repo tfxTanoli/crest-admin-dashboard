@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { Save, Info } from 'lucide-react'
 import Card from '../../components/ui/Card'
@@ -129,7 +129,7 @@ export default function DistributionPage() {
             <span>
               {totalValid
                 ? '✓ Percentages are valid (total = 100%)'
-                : `Total must equal 100%. Current: ${journeyTotal}% — adjust to proceed.`}
+                : `Total must equal 100%. Current: ${journeyTotal}%, adjust to proceed.`}
             </span>
           </div>
 
@@ -192,7 +192,7 @@ export default function DistributionPage() {
       </Card>
 
       {/* Live preview */}
-      <Card title="Live Preview — Journey Payment Breakdown">
+      <Card title="Live Preview: Journey Payment Breakdown">
         <p className="text-gray-400 text-xs mb-4">
           Based on a ${journeyFee.toFixed(2)} journey fee with current percentages.
         </p>

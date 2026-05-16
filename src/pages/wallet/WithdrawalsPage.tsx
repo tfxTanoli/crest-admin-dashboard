@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react'
+﻿import { useState, useMemo, useEffect } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Check, X, Banknote } from 'lucide-react'
 import DataTable, { type Column } from '../../components/shared/DataTable'
@@ -72,7 +72,7 @@ export default function WithdrawalsPage() {
           {r.bankInfo?.bankName && <p>{r.bankInfo.bankName}</p>}
           {r.bankInfo?.accountNumber && <p>{r.bankInfo.accountNumber}</p>}
           {r.bankInfo?.accountName && <p>{r.bankInfo.accountName}</p>}
-          {!r.bankInfo?.bankName && '—'}
+          {!r.bankInfo?.bankName && '-'}
         </div>
       ),
     },
@@ -89,7 +89,7 @@ export default function WithdrawalsPage() {
     {
       key: 'processed',
       header: 'Processed',
-      render: (r) => <span className="text-gray-500 text-xs">{r.processedAt ? formatDateTime(r.processedAt) : '—'}</span>,
+      render: (r) => <span className="text-gray-500 text-xs">{r.processedAt ? formatDateTime(r.processedAt) : '-'}</span>,
     },
     {
       key: 'actions',

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+﻿import { useState, useMemo } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { Eye, Ban, CheckCircle, Trash2, UserCog } from 'lucide-react'
 import DataTable, { type Column } from '../../components/shared/DataTable'
@@ -118,7 +118,7 @@ export default function UsersPage() {
       header: 'User',
       render: (u) => (
         <div>
-          <p className="font-medium text-white">{u.full_name || '—'}</p>
+          <p className="font-medium text-white">{u.full_name || '-'}</p>
           <p className="text-xs text-gray-400">{u.email}</p>
         </div>
       ),
@@ -126,13 +126,13 @@ export default function UsersPage() {
     {
       key: 'spiritual_name',
       header: 'Spiritual Name',
-      render: (u) => <span className="text-gray-300">{u.spiritual_name || '—'}</span>,
+      render: (u) => <span className="text-gray-300">{u.spiritual_name || '-'}</span>,
     },
     {
       key: 'crest',
       header: 'Crest',
       render: (u) => (
-        <Badge variant="purple">{capitalise(u.crest) || '—'}</Badge>
+        <Badge variant="purple">{capitalise(u.crest) || '-'}</Badge>
       ),
     },
     {
@@ -240,11 +240,11 @@ export default function UsersPage() {
               {[
                 ['Full Name', selectedUser.full_name],
                 ['Email', selectedUser.email],
-                ['Spiritual Name', selectedUser.spiritual_name || '—'],
-                ['Crest', capitalise(selectedUser.crest) || '—'],
+                ['Spiritual Name', selectedUser.spiritual_name || '-'],
+                ['Crest', capitalise(selectedUser.crest) || '-'],
                 ['Stage', formatStage(selectedUser.stage)],
                 ['Wallet Balance', formatCurrency(selectedUser.wallet_balance ?? 0)],
-                ['Payment Ref', selectedUser.payment_reference || '—'],
+                ['Payment Ref', selectedUser.payment_reference || '-'],
                 ['Joined', formatDate(selectedUser.created_at)],
               ].map(([label, value]) => (
                 <div key={label}>

@@ -55,10 +55,10 @@ export default function ArticleCard({ article }: Props) {
         {/* Article number badge */}
         <div className="flex items-center gap-3 mb-5">
           <div className="w-8 h-8 bg-brand-600 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
-            {article.id}
+            {article.order}
           </div>
           <span className="text-xs font-semibold text-brand-400 uppercase tracking-widest">
-            Article {article.id} of 6
+            Article {article.order}
           </span>
         </div>
 

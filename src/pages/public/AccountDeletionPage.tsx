@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+﻿import { Link, useNavigate } from 'react-router-dom'
 import { Shield, ArrowLeft, Trash2, AlertTriangle, CheckCircle2, Mail, Smartphone, Info } from 'lucide-react'
 
 const SUPPORT_EMAIL = 'support@crest.city'
@@ -73,9 +73,9 @@ export default function AccountDeletionPage() {
                 'Tap the Edit Profile button (pencil icon) on your dashboard',
                 'Scroll to the bottom of the Edit Profile screen',
                 'Tap "Delete Account" in the Danger Zone section',
-                'Read the warning carefully — review what data will be permanently deleted',
+                'Read the warning carefully, review what data will be permanently deleted',
                 'Enter your account password to confirm your identity',
-                'Tap "Delete My Account" — your account is permanently removed immediately',
+                'Tap "Delete My Account", your account is permanently removed immediately',
               ].map((text, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="w-6 h-6 bg-brand-600/20 border border-brand-600/40 rounded-full flex items-center justify-center text-xs font-bold text-brand-400 flex-shrink-0 mt-0.5">
@@ -120,7 +120,7 @@ export default function AccountDeletionPage() {
             </p>
             <ul className="space-y-2">
               {[
-                'Chat messages sent in community groups — displayed as "Deleted User", not linked to you',
+                'Chat messages sent in community groups, displayed as "Deleted User", not linked to you',
                 'Anonymised transaction records required for financial compliance and audit trails',
                 'Aggregated, non-identifiable usage analytics that cannot be traced back to you',
               ].map((item, i) => (
@@ -164,7 +164,7 @@ export default function AccountDeletionPage() {
             <h2 className="text-base font-semibold text-white">Processing Times</h2>
             <ul className="space-y-2">
               {[
-                { label: 'In-app deletion', detail: 'Immediate — your account is removed within seconds' },
+                { label: 'In-app deletion', detail: 'Immediate, your account is removed within seconds' },
                 { label: 'Email deletion requests', detail: 'Processed within 30 days of receiving your request' },
                 { label: 'Financial compliance records', detail: 'Retained for legally required periods in anonymised form' },
               ].map(({ label, detail }, i) => (

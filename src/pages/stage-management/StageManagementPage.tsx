@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+﻿import { useState, useMemo } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import {
   Unlock,
@@ -32,7 +32,7 @@ const STAGE_OPTIONS = [
   { value: '3', label: 'Week 3 (Wilderness)' },
   { value: '4', label: 'Week 4 (Shadow Work)' },
   { value: '5', label: 'Week 5 (Baptism)' },
-  { value: '6', label: 'Week 6 (Mission) — Completed' },
+  { value: '6', label: 'Week 6 (Mission): Completed' },
 ]
 
 const STAGE_BADGE: Record<number, 'default' | 'info' | 'warning' | 'success' | 'purple'> = {
@@ -195,7 +195,7 @@ export default function StageManagementPage() {
                 {/* User Info */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <p className="text-sm font-medium text-white">{user.full_name || '—'}</p>
+                    <p className="text-sm font-medium text-white">{user.full_name || '-'}</p>
                     <span className="text-xs text-gray-500">{user.email}</span>
                   </div>
                   <div className="flex items-center gap-2 mt-1">

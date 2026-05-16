@@ -1,23 +1,25 @@
-export type ContentBlock =
+﻿export type ContentBlock =
   | { type: 'paragraph'; text: string }
   | { type: 'heading'; text: string }
   | { type: 'list'; items: string[] }
 
 export interface Article {
-  id: number
+  id: string
   title: string
   subtitle?: string
   image?: string
   imageAlt?: string
+  order: number
   content: ContentBlock[]
 }
 
-export const articles: Article[] = [
+export const staticArticles: Article[] = [
   {
-    id: 1,
+    id: 'static-1',
+    order: 1,
     title: 'How a Theological Discovery Became a Human Performance Instrument',
     subtitle:
-      'CrestApp — a structured journey that reveals your True Self, strengthens your inner life, and issues your symbolic Crest as used in ancient times amongst nobility.',
+      'CrestApp, a structured journey that reveals your True Self, strengthens your inner life, and issues your symbolic Crest as used in ancient times amongst nobility.',
     image: '/Personal_Image_1.jpg',
     imageAlt: 'Author portrait',
     content: [
@@ -31,11 +33,11 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: "And the funny thing is, I never set out to create an instrument.",
+        text: 'And the funny thing is, I never set out to create an instrument.',
       },
       {
         type: 'paragraph',
-        text: "Somewhere along the line, I realised my research had uncovered something so theologically deep that I couldn't simply leave it in manuscript form. I had to offer people a way to complete the missing phase of the spiritual lives they've already embarked upon — regardless of their tradition. It still amazes me. It feels like diving into the ocean and coming up with a whale instead of being swallowed by one.",
+        text: "Somewhere along the line, I realised my research had uncovered something so theologically deep that I couldn't simply leave it in manuscript form. I had to offer people a way to complete the missing phase of the spiritual lives they've already embarked upon: regardless of their tradition. It still amazes me. It feels like diving into the ocean and coming up with a whale instead of being swallowed by one.",
       },
       {
         type: 'paragraph',
@@ -43,7 +45,7 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: "I've been quietly building a tool that translates the research — the four stages of transformation, the identity architecture, the reintegration arc — into a guided, six-week journey designed for everyone.",
+        text: "I've been quietly building a tool that translates the research: the four stages of transformation, the identity architecture, the reintegration arc: into a guided, six-week journey designed for everyone.",
       },
       {
         type: 'paragraph',
@@ -59,12 +61,12 @@ export const articles: Article[] = [
           'A map of your True Self',
           'A Shadow Map that reveals what holds you back',
           'A Fruit Map that shows your strengths',
-          'And finally, a Crest — a symbolic identity marking your reintegration, much like the family crests once reserved for the nobility of ancient Africa, Asia, and Great Britain',
+          'And finally, a Crest, a symbolic identity marking your reintegration, much like the family crests once reserved for the nobility of ancient Africa, Asia, and Great Britain',
         ],
       },
       {
         type: 'paragraph',
-        text: 'CrestApp is a practical tool — an instrument — for anyone seeking clarity, grounding, and a renewed sense of who they are becoming. For everyone who has asked, "How does this research help me?" — this is the answer you can now experience directly.',
+        text: 'CrestApp is a practical tool: an instrument: for anyone seeking clarity, grounding, and a renewed sense of who they are becoming. For everyone who has asked, "How does this research help me?": this is the answer you can now experience directly.',
       },
       {
         type: 'paragraph',
@@ -73,8 +75,9 @@ export const articles: Article[] = [
     ],
   },
   {
-    id: 2,
-    title: 'The Identity Crisis in Modern Life — And Why We Need Better Instruments',
+    id: 'static-2',
+    order: 2,
+    title: 'The Identity Crisis in Modern Life: And Why We Need Better Instruments',
     image: '/Personal_Image_2.jpg',
     imageAlt: 'Author portrait',
     content: [
@@ -84,7 +87,7 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: 'Not their job titles. Not their strengths. Not their personality labels. Their identity — the inner coherence that tells a person, "This is who I am, and this is who I am becoming."',
+        text: 'Not their job titles. Not their strengths. Not their personality labels. Their identity: the inner coherence that tells a person, "This is who I am, and this is who I am becoming."',
       },
       {
         type: 'paragraph',
@@ -130,7 +133,7 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: 'Most popular tools — personality tests, leadership assessments, coaching frameworks — do one thing well: they describe you.',
+        text: 'Most popular tools: personality tests, leadership assessments, coaching frameworks: do one thing well: they describe you.',
       },
       {
         type: 'paragraph',
@@ -172,7 +175,7 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: 'Across ancient Africa, Asia, the Near East, and early Christian communities, identity was not discovered through introspection alone — it was formed through a structured process.',
+        text: 'Across ancient Africa, Asia, the Near East, and early Christian communities, identity was not discovered through introspection alone: it was formed through a structured process.',
       },
       {
         type: 'paragraph',
@@ -215,7 +218,7 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: 'CrestApp emerges precisely at this intersection — where ancient wisdom meets modern performance psychology, and where spiritual formation meets identity science.',
+        text: 'CrestApp emerges precisely at this intersection: where ancient wisdom meets modern performance psychology, and where spiritual formation meets identity science.',
       },
       {
         type: 'paragraph',
@@ -248,7 +251,7 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: 'A structured journey that reveals who you are — and who you are becoming.',
+        text: 'A structured journey that reveals who you are: and who you are becoming.',
       },
       {
         type: 'heading',
@@ -283,14 +286,15 @@ export const articles: Article[] = [
     ],
   },
   {
-    id: 3,
+    id: 'static-3',
+    order: 3,
     title: 'The Four Stages of Transformation: The Architecture Behind CrestApp',
     image: '/Article_3.png',
     imageAlt: 'The four stages of transformation',
     content: [
       {
         type: 'paragraph',
-        text: 'Every meaningful transformation — spiritual, psychological, or human-performance related — follows a pattern. Not a motivational cycle. Not a random emotional journey. A structure.',
+        text: 'Every meaningful transformation: spiritual, psychological, or human-performance related: follows a pattern. Not a motivational cycle. Not a random emotional journey. A structure.',
       },
       {
         type: 'paragraph',
@@ -302,7 +306,7 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: 'Before CrestApp became an instrument, it was a pattern — a four-stage journey that explains how human beings grow, integrate, and become whole.',
+        text: 'Before CrestApp became an instrument, it was a pattern: a four-stage journey that explains how human beings grow, integrate, and become whole.',
       },
       {
         type: 'paragraph',
@@ -310,7 +314,7 @@ export const articles: Article[] = [
       },
       {
         type: 'heading',
-        text: '1. Awakening — The True Self Emerges',
+        text: '1. Awakening: The True Self Emerges',
       },
       {
         type: 'paragraph',
@@ -335,11 +339,11 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: 'In CrestApp, this becomes the True Self Map — a structured way to name who you are beneath roles, expectations, and survival patterns.',
+        text: 'In CrestApp, this becomes the True Self Map: a structured way to name who you are beneath roles, expectations, and survival patterns.',
       },
       {
         type: 'heading',
-        text: '2. Confrontation — Meeting the Shadow',
+        text: '2. Confrontation: Meeting the Shadow',
       },
       {
         type: 'paragraph',
@@ -365,7 +369,7 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: 'In ancient initiation, this was the trial, the desert, the wrestling, the fire. In CrestApp, this becomes the Shadow Map — a compassionate but honest look at the forces that sabotage your becoming.',
+        text: 'In ancient initiation, this was the trial, the desert, the wrestling, the fire. In CrestApp, this becomes the Shadow Map: a compassionate but honest look at the forces that sabotage your becoming.',
       },
       {
         type: 'paragraph',
@@ -373,7 +377,7 @@ export const articles: Article[] = [
       },
       {
         type: 'heading',
-        text: '3. Strengthening — The Fruit Appears',
+        text: '3. Strengthening: The Fruit Appears',
       },
       {
         type: 'paragraph',
@@ -399,7 +403,7 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: 'In CrestApp, this becomes the Fruit Map — a structured way to identify the strengths that emerge when your True Self is no longer fighting your Shadow.',
+        text: 'In CrestApp, this becomes the Fruit Map: a structured way to identify the strengths that emerge when your True Self is no longer fighting your Shadow.',
       },
       {
         type: 'paragraph',
@@ -407,11 +411,11 @@ export const articles: Article[] = [
       },
       {
         type: 'heading',
-        text: '4. Reintegration — The Crest Is Issued',
+        text: '4. Reintegration: The Crest Is Issued',
       },
       {
         type: 'paragraph',
-        text: 'This is the final stage — the moment when the journey becomes identity.',
+        text: 'This is the final stage: the moment when the journey becomes identity.',
       },
       {
         type: 'paragraph',
@@ -441,7 +445,7 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: 'In CrestApp, this becomes your Crest — a symbolic identity marking your reintegration, much like the crests once reserved for the nobility of ancient Africa, Asia, and Great Britain.',
+        text: 'In CrestApp, this becomes your Crest: a symbolic identity marking your reintegration, much like the crests once reserved for the nobility of ancient Africa, Asia, and Great Britain.',
       },
       {
         type: 'paragraph',
@@ -457,7 +461,7 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: 'The four-stage architecture behind CrestApp is what makes it an instrument, not an app. It gives people a structured pathway — not random inspiration.',
+        text: 'The four-stage architecture behind CrestApp is what makes it an instrument, not an app. It gives people a structured pathway: not random inspiration.',
       },
       {
         type: 'paragraph',
@@ -474,7 +478,8 @@ export const articles: Article[] = [
     ],
   },
   {
-    id: 4,
+    id: 'static-4',
+    order: 4,
     title: 'Identity Clarity: The New Competitive Advantage',
     content: [
       {
@@ -552,7 +557,7 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: 'All important — but incomplete.',
+        text: 'All important: but incomplete.',
       },
       {
         type: 'paragraph',
@@ -587,10 +592,10 @@ export const articles: Article[] = [
       {
         type: 'list',
         items: [
-          'True Self — your core identity',
-          'Shadow — your internal contradictions',
-          'Fruit — your strengths and virtues',
-          'Reintegration — your symbolic identity, expressed as a Crest',
+          'True Self, your core identity',
+          'Shadow, your internal contradictions',
+          'Fruit, your strengths and virtues',
+          'Reintegration, your symbolic identity, expressed as a Crest',
         ],
       },
       {
@@ -620,7 +625,7 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: 'Identity clarity is no longer a personal luxury — it is a strategic advantage.',
+        text: 'Identity clarity is no longer a personal luxury: it is a strategic advantage.',
       },
       {
         type: 'paragraph',
@@ -659,7 +664,7 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: 'It is an instrument — a structured identity-clarity system that integrates:',
+        text: 'It is an instrument: a structured identity-clarity system that integrates:',
       },
       {
         type: 'list',
@@ -709,12 +714,13 @@ export const articles: Article[] = [
     ],
   },
   {
-    id: 5,
+    id: 'static-5',
+    order: 5,
     title: 'CrestApp: The Enterprise Instrument',
     content: [
       {
         type: 'paragraph',
-        text: "Most organizations today are built on systems — systems for finance, systems for operations, systems for performance, systems for compliance. But when it comes to the inner lives of the people who lead, collaborate, and make decisions, most organizations rely on intuition, personality tests, or sporadic coaching.",
+        text: "Most organizations today are built on systems: systems for finance, systems for operations, systems for performance, systems for compliance. But when it comes to the inner lives of the people who lead, collaborate, and make decisions, most organizations rely on intuition, personality tests, or sporadic coaching.",
       },
       {
         type: 'paragraph',
@@ -731,7 +737,7 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: 'Enter CrestApp — not as an app, but as an enterprise instrument.',
+        text: 'Enter CrestApp: not as an app, but as an enterprise instrument.',
       },
       {
         type: 'paragraph',
@@ -790,15 +796,15 @@ export const articles: Article[] = [
       {
         type: 'list',
         items: [
-          'Awakening — the True Self emerges',
-          'Confrontation — the Shadow becomes visible',
-          'Strengthening — the Fruit (strengths) stabilizes',
-          'Reintegration — the symbolic Crest is issued',
+          'Awakening, the True Self emerges',
+          'Confrontation, the Shadow becomes visible',
+          'Strengthening, the Fruit (strengths) stabilizes',
+          'Reintegration, the symbolic Crest is issued',
         ],
       },
       {
         type: 'paragraph',
-        text: "But what makes it enterprise-ready is not the theory — it's the structure.",
+        text: "But what makes it enterprise-ready is not the theory: it's the structure.",
       },
       {
         type: 'paragraph',
@@ -820,7 +826,7 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: 'It is an instrument — a structured system that produces identity clarity at scale.',
+        text: 'It is an instrument: a structured system that produces identity clarity at scale.',
       },
       {
         type: 'heading',
@@ -833,12 +839,12 @@ export const articles: Article[] = [
       {
         type: 'list',
         items: [
-          'Leadership Development — executives and emerging leaders gain identity clarity, emotional stability, and symbolic grounding',
-          'Team Formation — teams gain a shared understanding of each member\'s True Self, Shadow patterns, and Fruit strengths',
-          'Corporate Chaplaincy & Spiritual Care — a structured, theologically grounded pathway for spiritual formation inside the workplace',
-          'Business Schools & Executive Education — students gain identity architecture alongside strategy, finance, and leadership theory',
-          'DEI & Belonging Work — identity clarity deepens belonging by helping people understand who they are beneath cultural labels',
-          'Coaching & Mentorship Programs — coaches gain a structured instrument to guide identity-level transformation',
+          "Leadership Development: executives and emerging leaders gain identity clarity, emotional stability, and symbolic grounding",
+          "Team Formation: teams gain a shared understanding of each member's True Self, Shadow patterns, and Fruit strengths",
+          'Corporate Chaplaincy & Spiritual Care, a structured, theologically grounded pathway for spiritual formation inside the workplace',
+          'Business Schools & Executive Education, students gain identity architecture alongside strategy, finance, and leadership theory',
+          'DEI & Belonging Work, identity clarity deepens belonging by helping people understand who they are beneath cultural labels',
+          'Coaching & Mentorship Programs, coaches gain a structured instrument to guide identity-level transformation',
         ],
       },
       {
@@ -890,10 +896,11 @@ export const articles: Article[] = [
     ],
   },
   {
-    id: 6,
+    id: 'static-6',
+    order: 6,
     title: 'Symbolic Identity: Why the Crest Matters',
     image: '/crest_black_logo.png',
-    imageAlt: 'Crest logo — symbol of identity and transformation',
+    imageAlt: 'Crest logo: symbol of identity and transformation',
     content: [
       {
         type: 'paragraph',
@@ -909,7 +916,7 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: 'CrestApp restores that ancient logic — not by copying old symbols, but by helping each person discover their own.',
+        text: 'CrestApp restores that ancient logic: not by copying old symbols, but by helping each person discover their own.',
       },
       {
         type: 'heading',
@@ -921,12 +928,7 @@ export const articles: Article[] = [
       },
       {
         type: 'list',
-        items: [
-          'Job titles',
-          'Personality labels',
-          'Social media bios',
-          'Organisational roles',
-        ],
+        items: ['Job titles', 'Personality labels', 'Social media bios', 'Organisational roles'],
       },
       {
         type: 'paragraph',
@@ -977,7 +979,7 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: 'CrestApp brings this back — not as nostalgia, but as a psychological and spiritual technology.',
+        text: 'CrestApp brings this back: not as nostalgia, but as a psychological and spiritual technology.',
       },
       {
         type: 'heading',
@@ -990,15 +992,15 @@ export const articles: Article[] = [
       {
         type: 'list',
         items: [
-          'Awakening — your True Self emerges',
-          'Confrontation — your Shadow becomes visible',
-          'Strengthening — your Fruit stabilizes',
-          'Reintegration — your identity becomes coherent',
+          'Awakening, your True Self emerges',
+          'Confrontation, your Shadow becomes visible',
+          'Strengthening, your Fruit stabilizes',
+          'Reintegration, your identity becomes coherent',
         ],
       },
       {
         type: 'paragraph',
-        text: 'And then — only then — the Crest is issued.',
+        text: 'And then: only then: the Crest is issued.',
       },
       {
         type: 'paragraph',
@@ -1033,9 +1035,9 @@ export const articles: Article[] = [
       {
         type: 'list',
         items: [
-          'It anchors you — when life becomes chaotic, a symbol reminds you who you are',
-          'It aligns you — a symbol pulls your True Self, Shadow, and Fruit into coherence',
-          'It activates you — a symbol calls you forward into the person you are becoming',
+          'It anchors you, when life becomes chaotic, a symbol reminds you who you are',
+          'It aligns you, a symbol pulls your True Self, Shadow, and Fruit into coherence',
+          'It activates you, a symbol calls you forward into the person you are becoming',
         ],
       },
       {
@@ -1044,7 +1046,7 @@ export const articles: Article[] = [
       },
       {
         type: 'heading',
-        text: 'The Crest Is Not the End — It Is the Beginning',
+        text: 'The Crest Is Not the End: It Is the Beginning',
       },
       {
         type: 'paragraph',
@@ -1081,7 +1083,7 @@ export const articles: Article[] = [
       },
       {
         type: 'paragraph',
-        text: 'People are searching for something deeper — something ancient, something true, something that integrates the whole person.',
+        text: 'People are searching for something deeper: something ancient, something true, something that integrates the whole person.',
       },
       {
         type: 'paragraph',

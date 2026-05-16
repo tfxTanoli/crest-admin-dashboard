@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { Eye, Trash2 } from 'lucide-react'
 import DataTable, { type Column } from '../../components/shared/DataTable'
@@ -69,7 +69,7 @@ export default function PrivateChatsPage() {
       render: (c) => (
         <div className="space-y-0.5">
           {Object.values(c.participantNames ?? {}).map((name, i) => (
-            <p key={i} className="text-sm text-white">{name || '—'}</p>
+            <p key={i} className="text-sm text-white">{name || '-'}</p>
           ))}
         </div>
       ),

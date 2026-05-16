@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+﻿import { useNavigate } from 'react-router-dom'
 import { Shield, ArrowLeft, Mail, Phone, Globe, MessageCircle } from 'lucide-react'
 
 const SUPPORT_EMAIL = 'support@crest.city'
@@ -45,7 +45,7 @@ export default function ContactPage() {
 
         {/* Contact cards */}
         <div className="space-y-4 mb-8">
-          {/* Email — most prominent */}
+          {/* Email - most prominent */}
           <a
             href={`mailto:${SUPPORT_EMAIL}`}
             className="flex items-center gap-4 bg-gray-900 border border-gray-800 rounded-2xl p-6 hover:border-brand-700/60 transition-colors group"
