@@ -9,7 +9,7 @@ interface Props {
 }
 
 const LAST_UPDATED = 'May 10, 2026'
-const SUPPORT_EMAIL = 'support@crest.city'
+const SUPPORT_EMAIL = 'crestapp@crest.city'
 const PHONE = '+2349025767556'
 const WEBSITE = 'www.crestapp.com'
 

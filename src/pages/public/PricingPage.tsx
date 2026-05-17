@@ -279,7 +279,7 @@ export default function PricingPage() {
               'Payments are processed securely through Paystack. CrestApp does not store your card details.',
               'Each payment is a one-time charge for a specific feature or milestone. There are no subscriptions, auto-renewals, or hidden fees.',
               'The Crest Name and Crest Celebration purchases are optional. Completing the journey does not require them.',
-              'For questions about a specific payment, contact us at support@crest.city.',
+              'For questions about a specific payment, contact us at crestapp@crest.city.',
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-2.5 text-sm text-gray-400">
                 <span className="text-brand-400 mt-0.5 flex-shrink-0">•</span>
