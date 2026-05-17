@@ -225,8 +225,8 @@ export default function LandingPage() {
               Refund Policy
             </Link>
             <span className="text-gray-700">|</span>
-            <a href="mailto:support@crest.city" className="hover:text-gray-300 transition-colors">
-              support@crest.city
+            <a href="mailto:crestapp@crest.city" className="hover:text-gray-300 transition-colors">
+              crestapp@crest.city
             </a>
           </div>
         </div>
