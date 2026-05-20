@@ -17,7 +17,7 @@ const SECTIONS: PolicySection[] = [
   {
     heading: '1. Overview',
     paragraphs: [
-      'CrestApp provides digital services, including access to a six-week guided transformation journey, personalised identity maps, and related digital features. All purchases are processed securely by Paddle.',
+      'CrestApp provides digital services, including access to a six-week guided transformation journey, personalised identity maps, and related digital features. All purchases are processed securely by PayPal.',
       'This policy explains your refund rights, including the 14-day withdrawal period required under applicable consumer laws.',
     ],
   },
@@ -25,9 +25,9 @@ const SECTIONS: PolicySection[] = [
     heading: '2. 14-Day Right to Withdraw',
     paragraphs: [
       'If you are a consumer residing in the EU, EEA, UK, or any region where a statutory cooling-off period applies, you have the right to withdraw from your purchase within 14 days of completing the transaction.',
-      'To exercise this right, you must contact Paddle directly using the instructions in your purchase confirmation email.',
+      'To exercise this right, you must contact PayPal directly using the instructions in your purchase confirmation email or via the PayPal Resolution Centre.',
       'Important: If you choose to access or begin using CrestApp\'s digital content during this 14-day period, you may be asked to confirm that you agree for the service to begin immediately. Once you agree and access begins, you may lose your right to withdraw.',
-      'This process is managed by Paddle in accordance with their Buyer Terms.',
+      'This process is managed in accordance with PayPal\'s Buyer Protection terms.',
     ],
   },
   {
@@ -43,13 +43,13 @@ const SECTIONS: PolicySection[] = [
       'Verified technical failure preventing access',
     ],
     trailingParagraphs: [
-      'All such requests are handled by Paddle as the Merchant of Record.',
+      'All such requests are reviewed by CrestApp support and processed via PayPal.',
     ],
   },
   {
     heading: '4. How to Request a Refund',
     paragraphs: [
-      'All refund requests must be submitted directly to Paddle, using the link provided in your purchase confirmation email or via Paddle\'s support page.',
+      'All refund requests must be submitted to CrestApp support at the email below, or via the PayPal Resolution Centre using your purchase receipt.',
       'Please include:',
     ],
     bullets: [
@@ -58,14 +58,14 @@ const SECTIONS: PolicySection[] = [
       'A brief description of your request',
     ],
     trailingParagraphs: [
-      'Paddle will review your request and process any approved refund to your original payment method.',
+      'CrestApp support will review your request and any approved refund will be processed to your original PayPal payment method.',
     ],
   },
   {
     heading: '5. Non-Refundable Situations',
     type: 'ineligible',
     paragraphs: [
-      'In line with Paddle\'s Buyer Terms, refunds may not be granted if:',
+      'Refunds may not be granted if:',
     ],
     bullets: [
       'You continue using the digital service after agreeing to immediate access',
@@ -76,7 +76,7 @@ const SECTIONS: PolicySection[] = [
   {
     heading: '6. Contact',
     paragraphs: [
-      'For questions about your purchase or refund status, please contact Paddle using the details in your receipt.',
+      'For questions about your purchase or refund status, you can also open a dispute via the PayPal Resolution Centre using the details in your receipt.',
       `For general support with CrestApp features, email: ${SUPPORT_EMAIL}`,
     ],
   },
@@ -194,16 +194,15 @@ export default function RefundPolicyPage() {
         </div>
 
         <p className="text-sm text-gray-400 leading-relaxed mt-6 mb-4">
-          This Refund Policy applies to all purchases made through CrestApp and processed by Paddle,
-          our authorised reseller and Merchant of Record. By completing a purchase, you agree to
-          this policy and to Paddle's Buyer Terms.
+          This Refund Policy applies to all purchases made through CrestApp and processed by PayPal.
+          By completing a purchase, you agree to this policy and to PayPal's Buyer Protection terms.
         </p>
 
         {/* Summary banner */}
         <div className="flex items-start gap-3 bg-amber-900/20 border border-amber-700/40 rounded-xl px-4 py-3 mb-8">
           <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
           <p className="text-sm text-amber-300/90">
-            <strong>Summary:</strong> CrestApp purchases are processed by Paddle. Consumers in the
+            <strong>Summary:</strong> CrestApp purchases are processed by PayPal. Consumers in the
             EU, EEA, and UK have a 14-day right to withdraw. After this period, refunds are only
             considered in limited cases such as duplicate charges, undelivered access, or verified
             technical failures.

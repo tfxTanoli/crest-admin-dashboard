@@ -100,8 +100,8 @@ export default function PaymentsPage() {
       key: 'provider',
       header: 'Provider',
       render: (p) => (
-        <Badge variant={p.provider === 'paddle' ? 'info' : 'default'}>
-          {p.provider === 'paddle' ? 'Paddle' : 'Paystack'}
+        <Badge variant={p.provider === 'paypal' ? 'info' : 'default'}>
+          {p.provider === 'paypal' ? 'PayPal' : 'Paystack'}
         </Badge>
       ),
     },

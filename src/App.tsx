@@ -29,6 +29,8 @@ import ModerationPage from './pages/moderation/ModerationPage'
 import LegalPage from './pages/legal/LegalPage'
 import ArticlesPage from './pages/articles/ArticlesPage'
 import ArticlesAdminPage from './pages/articles-admin/ArticlesAdminPage'
+import PaymentProofsPage from './pages/payment-proofs/PaymentProofsPage'
+import ProceedLogsPage from './pages/proceed-logs/ProceedLogsPage'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -82,6 +84,8 @@ export default function App() {
           <Route path="/groups" element={<GroupsPage />} />
           <Route path="/private-chats" element={<PrivateChatsPage />} />
           <Route path="/payments" element={<PaymentsPage />} />
+          <Route path="/payment-proofs" element={<PaymentProofsPage />} />
+          <Route path="/proceed-logs" element={<ProceedLogsPage />} />
           <Route path="/wallet" element={<WalletPage />} />
           <Route path="/company-wallet" element={<CompanyWalletPage />} />
           <Route path="/withdrawals" element={<WithdrawalsPage />} />

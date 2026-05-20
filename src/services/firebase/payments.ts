@@ -24,8 +24,8 @@ export interface PaymentRecord {
   amount: number
   description: string
   reference?: string
-  paddleTransactionId?: string
-  provider?: 'paystack' | 'paddle'
+  paypalOrderId?: string
+  provider?: 'paystack' | 'paypal'
   status: string
   createdAt: unknown
 }
@@ -44,7 +44,7 @@ function mapPaymentDoc(d: import('firebase/firestore').QueryDocumentSnapshot): P
       ? `Name Payment (${data.crestType ?? 'name_single'})`
       : `Crest Payment (${data.crestType ?? 'single'})`,
     reference: data.reference,
-    paddleTransactionId: data.paddleTransactionId,
+    paypalOrderId: data.paypalOrderId,
     provider: data.provider ?? 'paystack',
     status: data.status,
     createdAt: data.createdAt,
@@ -52,7 +52,7 @@ function mapPaymentDoc(d: import('firebase/firestore').QueryDocumentSnapshot): P
 }
 
 export async function fetchPaymentTransactions(limitCount = 200): Promise<PaymentRecord[]> {
-  // Include both legacy Paystack ('verified') and Paddle ('completed') payments
+  // Include both legacy Paystack ('verified') and PayPal ('completed') payments
   const snap = await getDocs(
     query(
       collection(db, 'payments'),

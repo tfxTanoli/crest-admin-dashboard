@@ -18,6 +18,8 @@ import {
   FileText,
   BookOpen,
   X,
+  ScanSearch,
+  ClipboardList,
 } from 'lucide-react'
 
 interface SidebarProps {
@@ -52,6 +54,8 @@ const navSections = [
     label: 'Finance',
     items: [
       { to: '/payments', icon: CreditCard, label: 'Payments' },
+      { to: '/payment-proofs', icon: ScanSearch, label: 'Payment Proofs' },
+      { to: '/proceed-logs', icon: ClipboardList, label: 'Proceed Logs' },
       { to: '/wallet', icon: Wallet, label: 'Transactions' },
       { to: '/withdrawals', icon: ArrowDownToLine, label: 'Withdrawals' },
       { to: '/company-wallet', icon: Building2, label: 'Company Wallet' },
