@@ -57,16 +57,16 @@ const PLANS: PricePlan[] = [
     icon: Crown,
     step: 'Step 2',
     title: 'Crest Name Unlock',
-    price: 'From $100',
+    price: 'From $50',
     currency: 'USD',
     description:
-      'After completing Week 5, you may unlock your personalised Crest Name, a symbolic identity earned through the journey. Available for single users or as a couple.',
+      'After completing Week 5, you may unlock your personalised Crest Name, a symbolic identity earned through the journey. Available as a Single Name or as a Spouse Bundle for both partners.',
     includes: [
       'Personalised Crest Name generation',
       'Symbolic identity document',
       'Name based on your profile and journey data',
     ],
-    note: 'Single: $100 · Spouse/Couple: $100 per person. Exact fee is confirmed inside the app.',
+    note: 'Single Name: $50. Spouse Bundle: $100. Exact fee is confirmed inside the app.',
   },
   {
     id: 'crest_celebration',
@@ -76,14 +76,14 @@ const PLANS: PricePlan[] = [
     price: 'From $399',
     currency: 'USD',
     description:
-      'A milestone celebration event to mark the completion of your journey and receiving of your Crest. Available as a single booking or as a couple/spouse booking.',
+      'A milestone celebration event to mark the completion of your journey and receiving of your Crest. Available as a Single Celebration or a Spouse Celebration for both partners.',
     includes: [
       'Celebration event booking',
       'Official Crest presentation',
       'Commemorative milestone experience',
       'Recognition within the CrestApp community',
     ],
-    note: 'Single: $399 · Spouse/Couple: $699 for both.',
+    note: 'Single Celebration: $399. Spouse Celebration: $699.',
   },
 ]
 
@@ -276,7 +276,7 @@ export default function PricingPage() {
             {[
               'All prices are shown in US Dollars (USD). The in-app payment system converts to your local currency via the payment provider.',
               'Prices are subject to change. The current fee for any purchase is always shown inside the app before payment.',
-              'Payments are processed securely through Paystack. CrestApp does not store your card details.',
+              'Payments are processed securely through PayPal. CrestApp does not store your card details.',
               'Each payment is a one-time charge for a specific feature or milestone. There are no subscriptions, auto-renewals, or hidden fees.',
               'The Crest Name and Crest Celebration purchases are optional. Completing the journey does not require them.',
               'For questions about a specific payment, contact us at crestapp@crest.city.',
