@@ -8,6 +8,7 @@ import {
   subscribeToCompanyWallet,
   fetchCompanyTransactions,
 } from '../../services/firebase/wallet'
+import { fetchAllUsers } from '../../services/firebase/users'
 import type { CompanyWallet, CompanyTransaction } from '../../types'
 import { formatCurrency, formatDateTime } from '../../utils/formatters'
 
@@ -38,16 +39,28 @@ export default function CompanyWalletPage() {
     refetchInterval: 60_000,
   })
 
+  const { data: allUsers = [] } = useQuery({
+    queryKey: ['all-users-map'],
+    queryFn: fetchAllUsers,
+    staleTime: 5 * 60_000,
+  })
+
+  const userNameMap = useMemo(() => {
+    const map: Record<string, string> = {}
+    for (const u of allUsers) map[u.uid] = u.full_name
+    return map
+  }, [allUsers])
+
   const filtered = useMemo(() => {
     if (!search) return txList
     const q = search.toLowerCase()
     return txList.filter(
       (t) =>
-        t.userId.toLowerCase().includes(q) ||
+        (userNameMap[t.userId] ?? t.userId).toLowerCase().includes(q) ||
         t.paymentRef.toLowerCase().includes(q) ||
         t.source.toLowerCase().includes(q),
     )
-  }, [txList, search])
+  }, [txList, search, userNameMap])
 
   const paginated = useMemo(() => {
     const start = (page - 1) * ITEMS_PER_PAGE
@@ -75,8 +88,10 @@ export default function CompanyWalletPage() {
     },
     {
       key: 'user',
-      header: 'Payer ID',
-      render: (t) => <span className="text-xs font-mono text-gray-400">{t.userId}</span>,
+      header: 'Payer Name',
+      render: (t) => (
+        <span className="text-sm text-gray-200">{userNameMap[t.userId] ?? t.userId}</span>
+      ),
     },
     {
       key: 'ref',
@@ -189,7 +204,7 @@ export default function CompanyWalletPage() {
           setSearch(v)
           setPage(1)
         }}
-        searchPlaceholder="Search by user ID or payment ref…"
+        searchPlaceholder="Search by name or payment ref…"
         page={page}
         totalPages={totalPages}
         onPageChange={setPage}

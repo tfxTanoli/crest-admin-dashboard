@@ -5,6 +5,7 @@ import DataTable, { type Column } from '../../components/shared/DataTable'
 import Badge from '../../components/ui/Badge'
 import { fetchAllTransactions } from '../../services/firebase/wallet'
 import { fetchRevenueSummary } from '../../services/firebase/wallet'
+import { fetchAllUsers } from '../../services/firebase/users'
 import type { Transaction } from '../../types'
 import { formatCurrency, formatDateTime } from '../../utils/formatters'
 import { useState, useMemo } from 'react'
@@ -33,15 +34,31 @@ export default function WalletPage() {
     queryFn: () => fetchAllTransactions(500),
   })
 
+  const { data: allUsers = [] } = useQuery({
+    queryKey: ['all-users-map'],
+    queryFn: fetchAllUsers,
+    staleTime: 5 * 60_000,
+  })
+
+  const userNameMap = useMemo(() => {
+    const map: Record<string, string> = {}
+    for (const u of allUsers) map[u.uid] = u.full_name
+    return map
+  }, [allUsers])
+
   const filtered = useMemo(() => {
     let list = transactions
     if (typeFilter) list = list.filter((t) => t.source === typeFilter)
     if (search) {
       const q = search.toLowerCase()
-      list = list.filter((t) => t.userId.toLowerCase().includes(q) || t.description.toLowerCase().includes(q))
+      list = list.filter(
+        (t) =>
+          (userNameMap[t.userId] ?? t.userId).toLowerCase().includes(q) ||
+          t.description.toLowerCase().includes(q),
+      )
     }
     return list
-  }, [transactions, typeFilter, search])
+  }, [transactions, typeFilter, search, userNameMap])
 
   const paginated = useMemo(() => {
     const start = (page - 1) * ITEMS_PER_PAGE
@@ -53,8 +70,8 @@ export default function WalletPage() {
   const columns: Column<Transaction>[] = [
     {
       key: 'user',
-      header: 'User ID',
-      render: (t) => <span className="text-xs text-gray-400 font-mono">{t.userId}</span>,
+      header: 'Member',
+      render: (t) => <span className="text-sm text-gray-200">{userNameMap[t.userId] ?? t.userId}</span>,
     },
     {
       key: 'source',
@@ -142,7 +159,7 @@ export default function WalletPage() {
         emptyText="No transactions found"
         searchValue={search}
         onSearchChange={(v) => { setSearch(v); setPage(1) }}
-        searchPlaceholder="Search by user ID or description…"
+        searchPlaceholder="Search by name or description…"
         page={page}
         totalPages={totalPages}
         onPageChange={setPage}
