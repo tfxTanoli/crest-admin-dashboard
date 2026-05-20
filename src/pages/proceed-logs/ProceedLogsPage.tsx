@@ -69,8 +69,9 @@ export default function ProceedLogsPage() {
       render: (row) => (
         <Badge
           variant={row.stage === 'journey' ? 'info' : row.stage === 'crest' ? 'success' : 'warning'}
-          label={row.stage === 'journey' ? 'Journey' : row.stage === 'crest' ? 'Crest' : 'Name'}
-        />
+        >
+          {row.stage === 'journey' ? 'Journey' : row.stage === 'crest' ? 'Crest' : 'Name'}
+        </Badge>
       ),
     },
     {
@@ -122,26 +123,30 @@ export default function ProceedLogsPage() {
       {/* Stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <StatCard
-          icon={ClipboardList}
-          label="Total Proceeds"
+          icon={<ClipboardList className="w-5 h-5 text-brand-400" />}
+          iconBg="bg-brand-900/60"
+          title="Total Proceeds"
           value={logs.length}
           loading={isLoading}
         />
         <StatCard
-          icon={Users}
-          label="Journey"
+          icon={<Users className="w-5 h-5 text-blue-400" />}
+          iconBg="bg-blue-900/60"
+          title="Journey"
           value={journeyCount}
           loading={isLoading}
         />
         <StatCard
-          icon={Globe}
-          label="Crest"
+          icon={<Globe className="w-5 h-5 text-green-400" />}
+          iconBg="bg-green-900/60"
+          title="Crest"
           value={crestCount}
           loading={isLoading}
         />
         <StatCard
-          icon={Phone}
-          label="Name"
+          icon={<Phone className="w-5 h-5 text-yellow-400" />}
+          iconBg="bg-yellow-900/60"
+          title="Name"
           value={nameCount}
           loading={isLoading}
         />
