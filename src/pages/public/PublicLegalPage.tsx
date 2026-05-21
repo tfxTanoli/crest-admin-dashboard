@@ -336,7 +336,7 @@ const TERMS_SECTIONS: Section[] = [
   {
     heading: '13. Governing Law',
     paragraphs: [
-      'These Terms are governed by the laws of [Insert Country/Region]. Any disputes will be resolved under the jurisdiction of [Insert Courts].',
+      'These Terms are governed by the laws of the Federal Republic of Nigeria. Any disputes will be resolved under the jurisdiction of Nigerian courts.',
     ],
   },
   {
