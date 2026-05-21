@@ -64,6 +64,13 @@ export default function ProceedLogsPage() {
       render: (row) => <span className="font-mono text-sm text-white">{row.email || '—'}</span>,
     },
     {
+      key: 'paypalEmail',
+      header: 'PayPal Email',
+      render: (row) => (
+        <span className="font-mono text-sm text-blue-400">{row.paypalEmail || '—'}</span>
+      ),
+    },
+    {
       key: 'stage',
       header: 'Stage',
       render: (row) => (

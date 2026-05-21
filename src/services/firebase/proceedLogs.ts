@@ -12,6 +12,7 @@ export interface ProceedLog {
   id: string
   userId: string
   email: string
+  paypalEmail: string
   phone: string
   country: string
   stage: 'journey' | 'crest' | 'name'
@@ -33,6 +34,7 @@ export async function fetchProceedLogs(maxCount = 500): Promise<ProceedLog[]> {
       id: d.id,
       userId: data.userId ?? '',
       email: data.email ?? '',
+      paypalEmail: data.paypalEmail ?? '',
       phone: data.phone ?? '',
       country: data.country ?? '',
       stage: data.stage ?? 'journey',
